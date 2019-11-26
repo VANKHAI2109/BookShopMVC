@@ -1,0 +1,7 @@
+# . la khong push
+# / la folder (vd nhu settings/)
+# chi là file binh thuong thi khong /
+
+.settings/
+.classpath
+.project
