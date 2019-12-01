@@ -24,4 +24,10 @@ public class TheLoaiDao {
 		Query<TheLoai> query=session.createQuery(sql);
 		return query.getResultList();
 	}
+	
+	public TheLoai selectTacGia(int idTheLoai) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(TheLoai.class, idTheLoai);	
+	
+	}
 }

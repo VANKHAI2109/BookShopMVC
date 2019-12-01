@@ -1,6 +1,5 @@
 package vankhai.bookshop.dao;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,8 +7,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import vankhai.bookshop.entity.User;
 
@@ -33,15 +30,23 @@ public class UserDao {
 		return false;
 		
 	}
-	
+	public boolean checktrunguser(String username) {
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		String sql = "from "+User.class.getName()+" e where e.name like '"+username+"'";
+		Query<?> query = session.createQuery(sql);
+		if(query.list().size() >= 1)
+			return true;
+		return false;
+	}
 	public void saveUser(User user) {
 		User save=new User();
 		save.setName(user.getName());
 		save.setPassword(user.getPassword());
 		save.setEmail(user.getEmail());
-	
 		Session session=this.sessionFactory.getCurrentSession();
-	
 		session.persist(save);
+		
+		
 	}
 }

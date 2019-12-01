@@ -1,6 +1,5 @@
 package vankhai.bookshop.service;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,9 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import vankhai.bookshop.dao.SachDao;
-import vankhai.bookshop.dao.UserDao;
 import vankhai.bookshop.entity.Sach;
-import vankhai.bookshop.entity.TheLoai;
 
 @Repository
 @Transactional
@@ -22,7 +19,13 @@ public class SachService {
 	
 	@Autowired
 	private SachDao sachDao;
+	public String processFile(MultipartFile file) {
+		return sachDao.processFile(file);
+	}
 	
+	public void themSach( Sach ds) {
+		sachDao.themSach(ds);
+	}
 	public List<Sach> getAll(){
 		return sachDao.getAll();
 	}

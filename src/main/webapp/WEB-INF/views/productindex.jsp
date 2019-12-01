@@ -70,26 +70,31 @@
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<form role="form" action="xulyInsert" method="get">
+						<form role="form" action="xuLyThemSach" method="post" enctype="multipart/form-data">
 							<div class="card-body">
 								<div class="form-group">
 									<label for="inputName">Tên sách</label> <input type="text"
 										class="form-control" name="tensach"
 										placeholder="Nhập tên sách">
 								</div>
+								
 								<div class="form-group">
-									<label for="inputPrice">Tên tác giả</label> <input type="text"
-										class="form-control" name="tentacgia"
-										placeholder="Nhập tên tác giả">
-								</div>
-
-								<div class="form-group">
-									<label>Tên thể loại</label> <select class="custom-select" name="tentheloai">
-										<c:forEach items="${list}" var="list">
-											<option value="">${list.theLoai }</option>
+									<label>Tac Giả</label>
+									 <select class="custom-select" name="idtacgia">
+										<c:forEach items="${list2}" var="list2">
+											<option value="${list2.id }">${list2.tenTacGia }</option>
 										</c:forEach>
-									</select>
-								</div>
+									</select>								
+								</div> 
+																
+								<div class="form-group">
+									<label>Tên thể loại</label>
+									 <select class="custom-select" name="idtheloai">
+										<c:forEach items="${list}" var="list">
+											<option value="${list.id }">${list.theLoai }</option>
+										</c:forEach>
+									</select>								
+								</div> 
 
 								<div class="form-group">
 									<label for="inputFile">Hình ảnh</label>
@@ -101,9 +106,9 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputName">Ghi chú</label> <input type="text"
+									<label for="inputPrice">Ghi chú</label> <input type="text"
 										class="form-control" name="ghichu"
-										placeholder="Ghi chú sản phẩm">
+										placeholder="Giá">
 								</div>
 								<div class="form-group">
 									<label for="inputPrice">Đơn giá</label> <input type="text"
@@ -131,31 +136,20 @@
 				<!--List Products -->
 				<div class="card card-primary">
 					<div class="card-header">
-						<h3 class="card-title">Danh sách sản phẩm</h3>
+						<h3 class="card-title" style="text-align: center;">Danh sách sản phẩm</h3>
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
-						<div class="row">
-
-							<div class="col-sm-12 col-md-6">
-								<div id="example1_filter" class="dataTables_filter">
-									<label>Search: <input type="search"
-										class="form-control form-control-sm" placeholder=""
-										aria-controls="example1">
-									</label>
-								</div>
-							</div>
-						</div>
+						
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>Tên sản phẩm</th>
-									<th>Giá</th>
-									<th>Đơn vị đếm</th>
-									<th>Nhà cung cấp</th>
-									<th>Ảnh sản phẩm</th>
-									<th>Sửa</th>
-									<th>Xóa</th>
+									<th>Tên Sách</th>
+									<th>Tên Tác Giả</th>
+									<th>Tên Thể Loại</th>
+									<th>Ảnh</th>
+									<th>Ghi Chú</th>
+									<th>Đơn giá</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -163,17 +157,6 @@
 									<td>Súng AK47</td>
 									<td>1000000</td>
 									<td>Cái</td>
-									<td>Free Fire Gerena</td>
-									<td><img src="../dist/img/SungAK.jpg" height="50"
-										width="50" /></td>
-									<td><a href="update.html"><p>Sửa</p></a></td>
-									<td><a href="#"><p>Xóa</p></a></td>
-								</tr>
-								<tr>
-									<td>Lựu đạn</td>
-									<td>250000</td>
-									<td>Quả</td>
-									<td>Free Fire Gerena</td>
 									<td><img src="../dist/img/SungAK.jpg" height="50"
 										width="50" /></td>
 									<td><a href="update.html"><p>Sửa</p></a></td>

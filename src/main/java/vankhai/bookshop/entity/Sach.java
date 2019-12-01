@@ -4,9 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,28 +19,33 @@ public class Sach implements Serializable {
 	
 	private int idSach;
 	private String tenSach;
-	private String tenTacGia;
-	private String theLoai;
-	private byte[] hinhAnh;
+	private int idTacGia;
+	private int idTheLoai;
+	private String hinhAnh;
 	private String ghiChu;
 	private float donGia;
+	
+	private TacGia tacGia;
+	private TheLoai theLoai;
 	
 	
 	public Sach() {
 		
 	}
 
-	public Sach(int idSach, String tenSach, String tenTacGia, String theLoai, byte[] hinhAnh, String ghiChu,
-			float donGia) {
+	
+	public Sach(int idSach, String tenSach, int idTacGia, int idTheLoai, String hinhAnh, String ghiChu, float donGia) {
 		super();
 		this.idSach = idSach;
 		this.tenSach = tenSach;
-		this.tenTacGia = tenTacGia;
-		this.theLoai = theLoai;
+		this.idTacGia = idTacGia;
+		this.idTheLoai = idTheLoai;
 		this.hinhAnh = hinhAnh;
 		this.ghiChu = ghiChu;
 		this.donGia = donGia;
 	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idsach")
@@ -55,27 +64,31 @@ public class Sach implements Serializable {
 		this.tenSach = tenSach;
 	}
 	
-	@Column(name="TenTacGia")
-	public String getTenTacGia() {
-		return tenTacGia;
+	//Do là khóa phụ, nên khi set cả bảng tác giả vào, nó sẽ tự set idtg vào bảng sách
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="idTacGia", foreignKey = @ForeignKey(name = "SACH_TG_FK"))
+	public TacGia getTacGia() {
+		return tacGia;
 	}
-	public void setTenTacGia(String tenTacGia) {
-		this.tenTacGia = tenTacGia;
+	public void setTacGia(TacGia tacGia) {
+		this.tacGia = tacGia;
 	}
-	
-	@Column(name="TenTheLoai")
-	public String getTheLoai() {
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="idTheLoai", foreignKey = @ForeignKey(name = "SACH_TL_FK"))
+	public TheLoai getTheLoai() {
 		return theLoai;
 	}
-	public void setTheLoai(String theLoai) {
+	public void setTheLoai(TheLoai theLoai) {
 		this.theLoai = theLoai;
 	}
-	
+
+
 	@Column(name="HinhAnh")
-	public byte[] getHinhAnh() {
+	public String getHinhAnh() {
 		return hinhAnh;
 	}
-	public void setHinhAnh(byte[] hinhAnh) {
+	public void setHinhAnh(String hinhAnh) {
 		this.hinhAnh = hinhAnh;
 	}
 	

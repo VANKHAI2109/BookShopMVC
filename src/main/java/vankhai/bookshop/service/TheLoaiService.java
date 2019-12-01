@@ -22,5 +22,8 @@ public class TheLoaiService {
 		return theLoaiDao.getAll();
 	}
 	
+	public TheLoai selectTheLoai(int idTheLoai) {
+		return theLoaiDao.selectTacGia(idTheLoai);
+	}
 	
 }

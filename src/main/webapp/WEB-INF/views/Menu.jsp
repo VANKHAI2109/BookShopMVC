@@ -3,119 +3,69 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>BookShop</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png">
-
-<!-- all css here -->
-<!-- bootstrap v3.3.6 css -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- animate css -->
-<link rel="stylesheet" href="css/animate.css">
-<!-- meanmenu css -->
-<link rel="stylesheet" href="css/meanmenu.min.css">
-<!-- owl.carousel css -->
-<link rel="stylesheet" href="css/owl.carousel.css">
-<!-- font-awesome css -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<!-- flexslider.css-->
-<link rel="stylesheet" href="css/flexslider.css">
-<!-- chosen.min.css-->
-<link rel="stylesheet" href="css/chosen.min.css">
-<!-- style css -->
-<link rel="stylesheet" href="style.css">
-<!-- responsive css -->
-<link rel="stylesheet" href="css/responsive.css">
-<!-- modernizr css -->
-<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
+	<meta charset="utf-8">	
+	
+	  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/modern-business.css" rel="stylesheet">
+  
+  <link href="style.css" rel="stylesheet">
+  <link href="update.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
-	<div class="main-menu-area hidden-sm hidden-xs sticky-header-1"
-		id="header-sticky">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="menu-area">
-						<nav>
-							<ul>
-								<li class="active"><a href="index">Trang chủ<i
-										class="fa fa-angle-down"></i></a></li>
 
-								<li><a href="product-details.html">Thể loại<i
-										class="fa fa-angle-down"></i></a>
-									<div class="mega-menu mega-menu-2">
-										<c:forEach items="${list}" var="list">
-											<span> <a href="#" class="title">${list.theLoai}</a>
-											</span>
-									</div> 
-									</c:forEach>
-									</li>
-								<li><a href="#">Tác giả<i class="fa fa-angle-down"></i></a>
-									<div class="sub-menu sub-menu-2">
-										<ul>
-											<li><a href="blog.html">blog</a></li>
-											<li><a href="blog-details.html">blog-details</a></li>
-										</ul>
-									</div></li>
-								<li><a href="#">pages<i class="fa fa-angle-down"></i></a>
-									<div class="sub-menu sub-menu-2">
-										<ul>
-											<li><a href="shop.html">shop</a></li>
-											<li><a href="product-details.html">product-details</a></li>
-											<li><a href="blog.html">blog</a></li>
-											<li><a href="blog-details.html">blog-details</a></li>
-											<li><a href="contact.html">contact</a></li>
-											<li><a href="about.html">about</a></li>
-											<li><a href="login.html">login</a></li>
-											<li><a href="register.html">register</a></li>
-											<li><a href="cart.html">cart</a></li>
-											<li><a href="checkout.html">checkout</a></li>
-											<li><a href="wishlist.html">wishlist</a></li>
-											<li><a href="404.html">404 Page</a></li>
-										</ul>
-									</div></li>
-							</ul>
-						</nav>
-					</div>
-					<div class="safe-area">
-						<a href="product-details.html">sales off</a>
-					</div>
-				</div>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" id="color" href="index">Trang chủ
+					</a></li>
+					<li class="nav-item"><a class="nav-link" id="color" href="#">Sản phẩm</a></li>
+					
+					<li class="nav-item dropdown" >
+					    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="color">Thể loại</a>
+					    <div class="dropdown-menu">
+					    <c:forEach items="${list2}" var="list2">
+					    	<a class="dropdown-item" href="#">${list2.theLoai}</a>
+					    </c:forEach>
+					      
+					    </div>
+					  </li>
+					<li class="nav-item"><a class="nav-link" id="color" href="diachi">Địa chỉ</a></li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0" style="margin-right: 90px;">
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Nhập tên sản phẩm..." aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+				</form>
+				<ul class="nav justify-content-end">
+					<%
+						if (session.getAttribute("user") != null) {
+					%>
+					<li class="nav-item"><a class="nav-link" href="#" ><i class="fas fa-shopping-cart"></i>   Giỏ hàng</a>
+					
+					<li class="nav-item"><a class="nav-link" href="thongtinuser"><i class="fas fa-user-alt"></i>  <%=session.getAttribute("user")%></a>
+					
+					<li class="nav-item"><a class="nav-link" href="login"><i class="fas fa-sign-out-alt"></i>  Đăng xuất</a>
+					 <%
+ 						} else {					
+					 %>
+					 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i>   Giỏ hàng</a>
+					<li class="nav-item"><a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i>  Đăng nhập</a></li>
+					<li class="nav-item"><a class="nav-link" href="register"><i class="fas fa-registered"></i>  Đăng ký</a>
+					 <%
+ 						}
+						%>
+				</ul>
 			</div>
 		</div>
-	</div>
-
-	<script src="js/vendor/jquery-1.12.0.min.js"></script>
-	<!-- bootstrap js -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- owl.carousel js -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- meanmenu js -->
-	<script src="js/jquery.meanmenu.js"></script>
-	<!-- wow js -->
-	<script src="js/wow.min.js"></script>
-	<!-- jquery.parallax-1.1.3.js -->
-	<script src="js/jquery.parallax-1.1.3.js"></script>
-	<!-- jquery.countdown.min.js -->
-	<script src="js/jquery.countdown.min.js"></script>
-	<!-- jquery.flexslider.js -->
-	<script src="js/jquery.flexslider.js"></script>
-	<!-- chosen.jquery.min.js -->
-	<script src="js/chosen.jquery.min.js"></script>
-	<!-- jquery.counterup.min.js -->
-	<script src="js/jquery.counterup.min.js"></script>
-	<!-- waypoints.min.js -->
-	<script src="js/waypoints.min.js"></script>
-	<!-- plugins js -->
-	<script src="js/plugins.js"></script>
-	<!-- main js -->
-	<script src="js/main.js"></script>
+	</nav>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

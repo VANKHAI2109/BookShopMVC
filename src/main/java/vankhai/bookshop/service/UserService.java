@@ -27,8 +27,16 @@ public class UserService {
 		return false;
 	}
 	
+	public boolean checktrunguser(String username) {
+		boolean kq = userDao.checktrunguser(username);
+		if(kq==true)
+			return true;
+		return false;
+	}
+	
 	public void saverUser(User user) {
 		userDao.saveUser(user);
 	}
+	
 	
 }
