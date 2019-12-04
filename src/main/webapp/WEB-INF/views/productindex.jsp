@@ -127,7 +127,7 @@
 							<!-- /.card-body -->
 
 							<div class="card-footer">
-								<button type="submit" class="btn btn-primary">Submit</button>
+								<button type="submit" class="btn btn-primary">Thêm</button>
 							</div>
 						</form>
 					</div>
@@ -135,37 +135,44 @@
 				<!-- /.container-fluid -->
 				<!--List Products -->
 				<div class="card card-primary">
-					<div class="card-header">
-						<h3 class="card-title" style="text-align: center;">Danh sách sản phẩm</h3>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body">
+			<div class="card-header">
+				<h3 class="card-title" >Danh sách sản phẩm</h3>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body" style="text-align: center;">
+				
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Id Sách</th>
+							<th>Tên Sách</th>
+							<th>Hình ảnh</th>
+							<th>Đơn giá</th>
+							<th colspan="2">Chức năng</th>
+
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${listsach}" var="listsach">
+						<tr>
+							<td name="id">${listsach.idSach}</td>
+							<td>${listsach.tenSach}</td>
+							<td><img src="img/${listsach.hinhAnh }" height="100px" width="100px" /></td>
+							<td>${listsach.donGia } VNĐ</td>
+							<td>
+								<a href="delete?idSach=${listsach.idSach}" onclick="return confirm('Bạn có muốn xóa sách ${listsach.tenSach} này không?')"><i class="fas fa-trash-alt"></i></a>
+							</td>
+							<td>
+								<a href="update.html"><i class="fas fa-edit"></i></a>
+							</td>
+						</tr>
+					</c:forEach>
 						
-						<table id="example1" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Tên Sách</th>
-									<th>Tên Tác Giả</th>
-									<th>Tên Thể Loại</th>
-									<th>Ảnh</th>
-									<th>Ghi Chú</th>
-									<th>Đơn giá</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Súng AK47</td>
-									<td>1000000</td>
-									<td>Cái</td>
-									<td><img src="../dist/img/SungAK.jpg" height="50"
-										width="50" /></td>
-									<td><a href="update.html"><p>Sửa</p></a></td>
-									<td><a href="#"><p>Xóa</p></a></td>
-								</tr>
-						</table>
-					</div>
-					<!-- /.card-body -->
-				</div>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+		</div>
 				<!--end List Products -->
 			</section>
 			<!-- /.content -->

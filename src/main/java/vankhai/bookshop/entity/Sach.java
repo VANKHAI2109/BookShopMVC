@@ -19,8 +19,6 @@ public class Sach implements Serializable {
 	
 	private int idSach;
 	private String tenSach;
-	private int idTacGia;
-	private int idTheLoai;
 	private String hinhAnh;
 	private String ghiChu;
 	private float donGia;
@@ -38,8 +36,6 @@ public class Sach implements Serializable {
 		super();
 		this.idSach = idSach;
 		this.tenSach = tenSach;
-		this.idTacGia = idTacGia;
-		this.idTheLoai = idTheLoai;
 		this.hinhAnh = hinhAnh;
 		this.ghiChu = ghiChu;
 		this.donGia = donGia;

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import vankhai.bookshop.entity.Sach;
+import vankhai.bookshop.entity.TacGia;
 
 @Repository(value = "SachDao")
 @Transactional(rollbackFor = Exception.class)
@@ -38,16 +39,15 @@ public class SachDao {
 	}
 	
 	public void themSach( Sach sach) {
-//		Sach save=new Sach();
-//		save.setTenSach(sach.getTenSach());
-//		save.setIdTacGia(sach.getTacGia());
-//		save.setIdTheLoai(sach.getIdTheLoai());
-//		save.setHinhAnh(sach.getHinhAnh());
-//		save.setGhiChu(sach.getGhiChu());
-//		save.setDonGia(sach.getDonGia());
 		Session session=this.sessionFactory.getCurrentSession();
-		session.save(sach);
-		
+		session.save(sach);		
+	}
+	
+	public boolean xoaSach( int idSach) {
+		Session session=this.sessionFactory.getCurrentSession();
+		Sach sach=session.get(Sach.class, idSach);
+		session.delete(sach);
+		return true;
 		
 	}
 	public List<Sach> getAll() {

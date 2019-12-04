@@ -26,6 +26,10 @@ public class SachService {
 	public void themSach( Sach ds) {
 		sachDao.themSach(ds);
 	}
+	
+	public boolean xoaSach( int idSach) {		
+		return sachDao.xoaSach(idSach);
+	}
 	public List<Sach> getAll(){
 		return sachDao.getAll();
 	}

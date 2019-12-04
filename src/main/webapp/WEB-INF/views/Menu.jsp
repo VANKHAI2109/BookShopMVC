@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
-
+	
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
@@ -47,15 +47,15 @@
 					<%
 						if (session.getAttribute("user") != null) {
 					%>
-					<li class="nav-item"><a class="nav-link" href="#" ><i class="fas fa-shopping-cart"></i>   Giỏ hàng</a>
+					<li class="nav-item"><a class="nav-link" href="giohang" ><i class="fas fa-shopping-cart"></i>   Giỏ hàng</a>
 					
-					<li class="nav-item"><a class="nav-link" href="thongtinuser"><i class="fas fa-user-alt"></i>  <%=session.getAttribute("user")%></a>
+					<li class="nav-item"><a class="nav-link" href="doimatkhau"><i class="fas fa-user-alt"></i>  <%=session.getAttribute("user")%></a>
 					
 					<li class="nav-item"><a class="nav-link" href="login"><i class="fas fa-sign-out-alt"></i>  Đăng xuất</a>
 					 <%
  						} else {					
 					 %>
-					 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i>   Giỏ hàng</a>
+					 <li class="nav-item"><a class="nav-link" href="giohang"><i class="fas fa-shopping-cart"></i>   Giỏ hàng</a>
 					<li class="nav-item"><a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i>  Đăng nhập</a></li>
 					<li class="nav-item"><a class="nav-link" href="register"><i class="fas fa-registered"></i>  Đăng ký</a>
 					 <%

@@ -5,11 +5,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -53,6 +58,10 @@ public class Home {
 		model.addAttribute("list", listTheLoai);
 		List<TacGia> listTacGia=tacGiaService.getAll();
 		model.addAttribute("list2", listTacGia);
+		
+		List<Sach> listSach=sachService.getAll();
+		model.addAttribute("listsach", listSach);
+		
 		return "productindex";
 	}
 	@RequestMapping("diachi")
@@ -60,10 +69,19 @@ public class Home {
 		return "diachi";
 	}
 	
+	@RequestMapping("doimatkhau")
+	public String DoiMatKhau() {
+		return "doimatkhau";
+	}
 	
 	@RequestMapping("AdminIndex")
 	public String AdminIndex() {
 		return "AdminIndex";
+	}
+	
+	@RequestMapping("giohang")
+	public String cart() {
+		return "giohang";
 	}
 
 	@RequestMapping("thongtinuser")
@@ -146,6 +164,12 @@ public class Home {
 		sach.setDonGia(donGia);
 		sachService.themSach(sach);
 		return "redirect:productindex";
+	}
+	
+	@RequestMapping(value= {"/delete"})
+	public String xoaSach(@RequestParam(value="idSach") int id){
+		sachService.xoaSach(id);
+		return "redirect:/productindex";
 	}
 
 }
