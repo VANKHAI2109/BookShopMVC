@@ -27,11 +27,24 @@ public class SachService {
 		sachDao.themSach(ds);
 	}
 	
+	public void suaSach(Sach sach) {
+		sachDao.suaSach(sach);
+	}
 	public boolean xoaSach( int idSach) {		
 		return sachDao.xoaSach(idSach);
 	}
+
+	/*
+	 * public boolean suaSach( Sach sach) { return sachDao.suaSach(sach); }
+	 */
 	public List<Sach> getAll(){
 		return sachDao.getAll();
+	}
+	public Sach getId(int idSach) {
+		return sachDao.getId(idSach);
+	}
+	public List<Sach> getSach(int idSach){
+		return sachDao.getSach(idSach);
 	}
 
 	

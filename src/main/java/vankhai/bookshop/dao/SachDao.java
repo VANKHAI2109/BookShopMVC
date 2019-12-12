@@ -38,11 +38,27 @@ public class SachDao {
 
 	}
 	
+	public Sach getId(int idSach) {
+		Session session=this.sessionFactory.getCurrentSession();
+		return session.get(Sach.class, idSach);
+	}
+	
+	public List<Sach> getSach(int idSach){
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql=("from" + Sach.class.getName()+idSach);
+		Query<Sach> query=session.createQuery(sql);
+		return query.getResultList();
+		
+	}
 	public void themSach( Sach sach) {
 		Session session=this.sessionFactory.getCurrentSession();
 		session.save(sach);		
 	}
-	
+	public void suaSach(Sach sach) {
+		Session session=this.sessionFactory.getCurrentSession();
+		session.update(sach);
+	}
+
 	public boolean xoaSach( int idSach) {
 		Session session=this.sessionFactory.getCurrentSession();
 		Sach sach=session.get(Sach.class, idSach);
@@ -50,6 +66,8 @@ public class SachDao {
 		return true;
 		
 	}
+	
+	
 	public List<Sach> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
 		String sql = "from " + Sach.class.getName();

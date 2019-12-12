@@ -66,14 +66,14 @@
 				<div class="container-fluid">
 					<div class="card card-primary">
 						<div class="card-header">
-							<h3 class="card-title">Thêm sách mới</h3>
+							<h3 class="card-title">Sửa thông tin sách</h3>
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<form role="form" action="xuLyThemSach" method="post" enctype="multipart/form-data">
+						<form role="form" action="xuLySua" method="post" enctype="multipart/form-data">
 							<div class="card-body">
 								<div class="form-group">
-									<label for="inputName">Tên sách</label> <input type="text"
+									<label for="inputName">Tên sách</label> <input type="text" value="${list.tenSach }"
 										class="form-control" name="tensach"
 										placeholder="Nhập tên sách">
 								</div>
@@ -81,20 +81,48 @@
 								<div class="form-group">
 									<label>Tac Giả</label>
 									 <select class="custom-select" name="idtacgia">
-										<c:forEach items="${list2}" var="list2">
-											<option value="${list2.id }">${list2.tenTacGia }</option>
-										</c:forEach>
-									</select>								
+									 	<c:set var="tgSach" value="${tacGia.tenTacGia}"/>
+									 	<c:forEach items="${allTacGia}" var="tgia">
+									 		<c:set var="tg" value="${tgia.tenTacGia}"/>
+											<c:if test="${tgSach != tg}">
+												<option value="${tgia.id}">${tgia.tenTacGia}</option>
+											</c:if>
+											<c:if test="${tgSach eq tg}">
+												<option value="${tacGia.id}" selected>${tgSach}</option>
+											</c:if>
+										</c:forEach>	
+									</select>											
 								</div> 
-																
+								
 								<div class="form-group">
+									<label>Thể loại</label>
+									 <select class="custom-select" name="idtheloai">
+									 	<c:set var="tlSach" value="${theLoai.theLoai}"/>
+									 	<c:forEach items="${allTheLoai}" var="thLoai">
+									 		<c:set var="tl" value="${thLoai.theLoai}"/>
+											<c:if test="${tlSach != tl}">
+												<option value="${thLoai.id}">${thLoai.theLoai}</option>
+											</c:if>
+											<c:if test="${tlSach eq thLoai}">
+												<option value="${thLoai.id}" selected>${tlSach}</option>
+											</c:if>
+										</c:forEach>	
+									</select>											
+								</div> 
+								
+								<!-- /// ok ok ok Sẵn lm giùm cái thể loại luôn ih :v
+								/// :( đói bụng :(). Vậy thôi phú đi ăn ih. để tui dựa theo làm
+								/// mà hiểu chưa. CHưa set if ă
+								set là gán biến trong var = cái trong value
+								eq là equals :v
+								ngâm cứu đi, ăn cơm đây
+								Ok. hi. thank cìu <3	 -->															
+								<%-- <div class="form-group">
 									<label>Tên thể loại</label>
 									 <select class="custom-select" name="idtheloai">
-										<c:forEach items="${list}" var="list">
-											<option value="${list.id }">${list.theLoai }</option>
-										</c:forEach>
+											<option value="">${list.theLoai.id}</option>
 									</select>								
-								</div> 
+								</div>  --%>
 
 								<div class="form-group">
 									<label for="inputFile">Hình ảnh</label>
@@ -107,12 +135,12 @@
 								</div>
 								<div class="form-group">
 									<label for="inputPrice">Ghi chú</label> <input type="text"
-										class="form-control" name="ghichu"
+										class="form-control" name="ghichu" value="${list.ghiChu }"
 										placeholder="Giá">
 								</div>
 								<div class="form-group">
 									<label for="inputPrice">Đơn giá</label> <input type="text"
-										class="form-control" name="dongia"
+										class="form-control" name="dongia" value="${list.donGia }"
 										placeholder="Giá">
 								</div>
 							</div>
@@ -127,57 +155,12 @@
 							<!-- /.card-body -->
 
 							<div class="card-footer">
-								<button type="submit" class="btn btn-primary">Thêm</button>
+								<button type="submit" class="btn btn-primary">Sửa</button>
 							</div>
 						</form>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
-				<!--List Products -->
-				<div class="card card-primary">
-			<div class="card-header">
-				<h3 class="card-title" >Danh sách sản phẩm</h3>
-			</div>
-			<!-- /.card-header -->
-			<div class="card-body" style="text-align: center;">
-				
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th>Id Sách</th>
-							<th>Tên Sách</th>
-							<th>Tên tác giả</th>
-							<th>Tên thể loại</th>
-							<th>Hình ảnh</th>
-							<th>Đơn giá</th>
-							<th colspan="2">Chức năng</th>
-
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach items="${listsach}" var="listsach">
-						<tr>
-							<td name="id">${listsach.idSach}</td>
-							<td>${listsach.tenSach}</td>
-							<td>${listsach.tacGia.id}</td>
-							<td>${listsach.theLoai.id}</td>
-							<td><img src="img/${listsach.hinhAnh }" height="100px" width="100px" /></td>
-							<td>${listsach.donGia } VNĐ</td>
-							<td>
-								<a href="delete?idSach=${listsach.idSach}" onclick="return confirm('Bạn có muốn xóa sách ${listsach.tenSach} này không?')"><i class="fas fa-trash-alt"></i></a>
-							</td>
-							<td>
-								<a href="update?idSach=${listsach.idSach}"><i class="fas fa-edit"></i></a>
-							</td>
-						</tr>
-					</c:forEach>
-						
-					</tbody>
-				</table>
-			</div>
-			<!-- /.card-body -->
-		</div>
-				<!--end List Products -->
 			</section>
 			<!-- /.content -->
 		</div>

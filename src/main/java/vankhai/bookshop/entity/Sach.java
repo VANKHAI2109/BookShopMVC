@@ -32,14 +32,27 @@ public class Sach implements Serializable {
 	}
 
 	
-	public Sach(int idSach, String tenSach, int idTacGia, int idTheLoai, String hinhAnh, String ghiChu, float donGia) {
+	
+	public Sach(int idSach, String tenSach, String hinhAnh, String ghiChu, float donGia, TacGia tacGia,
+			TheLoai theLoai) {
 		super();
 		this.idSach = idSach;
 		this.tenSach = tenSach;
 		this.hinhAnh = hinhAnh;
 		this.ghiChu = ghiChu;
 		this.donGia = donGia;
+		this.tacGia = tacGia;
+		this.theLoai = theLoai;
 	}
+
+
+
+	/*
+	 * public Sach(int idSach, String tenSach, int idTacGia, int idTheLoai, String
+	 * hinhAnh, String ghiChu, float donGia) { super(); this.idSach = idSach;
+	 * this.tenSach = tenSach; this.hinhAnh = hinhAnh; this.ghiChu = ghiChu;
+	 * this.donGia = donGia; }
+	 */
 
 
 	@Id

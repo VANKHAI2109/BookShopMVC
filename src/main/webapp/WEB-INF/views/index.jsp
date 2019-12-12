@@ -64,16 +64,11 @@
 						<img class="card-img-top" src="img/${list.hinhAnh}" style="width: 255px;height: 255px;">
 						<div class="card-body">
 							<h4 class="card-title">${list.tenSach}</h4>
-							Số lượng
-							<select>
-								<option>1</option>
-								<option>1</option>
-							</select>
 						</div>
 							
 							<h5 class="card-title" style="color: red;	"> Giá: ${list.donGia} VNĐ </h5>
 						<div class="card-footer">
-							<a href="#" class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i> Mua ngay</a>
+							<a href="muahang?idSach=${list.idSach}" class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i> Thêm vào giỏ</a>
 						</div>
 					</div>
 				</div>

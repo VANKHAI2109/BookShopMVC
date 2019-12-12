@@ -1,5 +1,7 @@
 package vankhai.bookshop.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,8 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
-	public User timtaikhoan(String id) {
-		return userDao.timTaiKhoan(id);
+	public User getIdUser(int id) {
+		return userDao.getIdUser(id);
 	}
 	
 	public boolean checklogin(String username,String password) {
@@ -38,5 +40,7 @@ public class UserService {
 		userDao.saveUser(user);
 	}
 	
-	
+	public List<User> getAll(){
+		return userDao.getAll();
+	}
 }

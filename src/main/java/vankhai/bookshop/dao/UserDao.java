@@ -1,6 +1,8 @@
 package vankhai.bookshop.dao;
 
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import vankhai.bookshop.entity.Sach;
 import vankhai.bookshop.entity.User;
 
 @Repository(value = "UserDao")
@@ -15,7 +18,7 @@ import vankhai.bookshop.entity.User;
 public class UserDao {
 	@Autowired
 	SessionFactory sessionFactory;
-	public User timTaiKhoan(String id){
+	public User getIdUser(int id){
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.get(User.class, id);
 	}
@@ -45,8 +48,13 @@ public class UserDao {
 		save.setPassword(user.getPassword());
 		save.setEmail(user.getEmail());
 		Session session=this.sessionFactory.getCurrentSession();
-		session.persist(save);
-		
-		
+		session.persist(save);		
+	}
+	
+	public List<User> getAll(){
+		Session session=this.sessionFactory.getCurrentSession();
+		String sql="from "+ User.class.getName();
+		Query<User> query = session.createQuery(sql);
+		return query.getResultList();
 	}
 }
