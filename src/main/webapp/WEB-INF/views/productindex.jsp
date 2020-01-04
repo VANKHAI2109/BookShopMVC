@@ -164,10 +164,10 @@
 							<td><img src="img/${listsach.hinhAnh }" height="100px" width="100px" /></td>
 							<td>${listsach.donGia } VNĐ</td>
 							<td>
-								<a href="delete?idSach=${listsach.idSach}" onclick="return confirm('Bạn có muốn xóa sách ${listsach.tenSach} này không?')"><i class="fas fa-trash-alt"></i></a>
+								<a href="delete?idSach=${listsach.idSach}" onclick="return confirm('Bạn có muốn xóa sách ${listsach.tenSach} này không?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
 							</td>
 							<td>
-								<a href="update?idSach=${listsach.idSach}"><i class="fas fa-edit"></i></a>
+								<a href="update?idSach=${listsach.idSach}" class="btn btn-success"><i class="fas fa-edit"></i></a>
 							</td>
 						</tr>
 					</c:forEach>

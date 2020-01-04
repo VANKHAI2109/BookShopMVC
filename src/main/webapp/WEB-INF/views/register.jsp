@@ -8,6 +8,16 @@
 <head>
   <meta charset="utf-8">
   <title>Index</title>
+  <style type="text/css">
+  	.fix{
+  		width:600px;
+  		height:600px;
+  		margin-left: 200px;
+  	}
+  	#fix{
+  		height: 450px;
+  	}
+  </style>
 </head>
 <body>
 	<!-- Star Menu -->
@@ -15,31 +25,42 @@
 	<!-- End Menu --> 
   <!-- Page Content -->
   <div class="container">
-
+<ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Đăng ký</li>
+    </ol>
     <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
+    <header class="jumbotron my-4" id="fix">
     <h2 style="text-align: center;">ĐĂNG KÝ</h2>
+    <%
+    	if(session.getAttribute("erro")!=null){
+    			
+    %>
     <div class="alert alert-success" role="alert">
-         ${NOTE}
+        <%=session.getAttribute("erro") %>
      </div>
-         <form action="saveUser" method="post">
+     
+     <%}else{ }%>
+         <form action="saveUser" method="post" class="fix" >
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Tên đăng nhập</label>
-      <input type="text" class="form-control" required="true" placeholder="Tên đăng nhập" name="username">
+      <input type="text" class="form-control" required placeholder="Tên đăng nhập" name="username">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Email</label>
-      <input type="email" class="form-control" required="true" placeholder="Email" name="email">
+      <input type="email" class="form-control" required placeholder="Email" name="email">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress">Mật khẩu</label>
-    <input type="password" class="form-control" required="true" placeholder="Mật khẩu" name="password">
+    <input type="password" class="form-control" minlength="6" maxlength="10" required placeholder="Mật khẩu" name="password">
   </div>
   <div class="form-group">
     <label for="inputAddress2">Nhập lại mật khẩu</label>
-    <input type="password" class="form-control" required="true" placeholder="Nhập lại mật khẩu" name="password2">
+    <input type="password" class="form-control" minlength="4" maxlength="10" required placeholder="Nhập lại mật khẩu" name="password2">
   </div>
  
   <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 25%;margin-left: 35%">Đăng ký</button>

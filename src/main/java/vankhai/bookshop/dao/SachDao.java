@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import vankhai.bookshop.entity.Sach;
 import vankhai.bookshop.entity.TacGia;
+import vankhai.bookshop.entity.TheLoai;
 
 @Repository(value = "SachDao")
 @Transactional(rollbackFor = Exception.class)
@@ -67,12 +68,24 @@ public class SachDao {
 		
 	}
 	
-	
+	/*
+	 * public List<Sach> getSachThamKhao(int id) { Session session =
+	 * this.sessionFactory.getCurrentSession(); String sql = "from " +
+	 * Sach.class.getName() + " where " + id + "=?"; Query<Sach> query =
+	 * session.createQuery(sql); return query.getResultList(); }
+	 */
 	public List<Sach> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
 		String sql = "from " + Sach.class.getName();
 		Query<Sach> query = session.createQuery(sql);
 		return query.getResultList();
 	}
-
+// này
+	public List<Sach> getSachTL(int idtheLoai) {
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql = "from " + Sach.class.getName() + " s where s.theLoai.id = " +idtheLoai ;
+		Query<Sach> query = session.createQuery(sql);
+		return query.getResultList();
+	}
+	
 }

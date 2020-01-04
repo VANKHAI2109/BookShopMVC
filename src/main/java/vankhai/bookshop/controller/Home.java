@@ -1,3 +1,4 @@
+
 package vankhai.bookshop.controller;
 
 import java.util.ArrayList;
@@ -6,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,6 +53,7 @@ public class Home {
 		model.addAttribute("list", listTheLoai);
 		HttpSession session=req.getSession();
 		session.removeAttribute("user");
+		session.removeAttribute("erro");
 		return "login";
 	}
 
@@ -71,11 +74,9 @@ public class Home {
 		return "diachi";
 	}
 	
-	@RequestMapping("doimatkhau/{id}")
-	public String DoiMatKhau(@RequestParam(value="id") int id,Model model) {
-		userService.getIdUser(id);
-		List<User> listUser=userService.getAll();
-		model.addAttribute("user", listUser);
+	@RequestMapping("doimatkhau")
+	public String DoiMatKhau(Model model) {
+		//userService.getIdUser(id);
 		return "doimatkhau";
 	}
 	
@@ -91,28 +92,32 @@ public class Home {
 	}
 	
 	@RequestMapping("register")
-	public String register(Model model) {
+	public String register(Model model, HttpSession session) {
 		List<TheLoai> listTheLoai = theLoaiService.getAll();
 		model.addAttribute("list", listTheLoai);
+		session.removeAttribute("erro");
 		return "register";
 	}
 
 	@PostMapping("saveUser")
-	public String register(Model model, HttpServletRequest req) {
+	public String register(Model model, HttpServletRequest req, HttpSession sesion) {
 		String username = req.getParameter("username");
 		String pass = req.getParameter("password");
 		String email = req.getParameter("email");
 		User user = new User(username, pass, email);
 		String pass2 = req.getParameter("password2");
 		if(userService.checktrunguser(username)==true) {
-			req.setAttribute("NOTE", "Trùng user");
+			sesion.setAttribute("erro", "Trùng user");
+			//req.setAttribute("NOTE", "Trùng user");
 		}
 		else if (pass.equals(pass2) == false) {
-			req.setAttribute("NOTE", "Mật khẩu không trùng khớp");
+			sesion.setAttribute("erro", "Mật khẩu không trùng khớp");
+			//req.setAttribute("NOTE", "Mật khẩu không trùng khớp");
 		}
 		else {		
 			userService.saverUser(user);
-			req.setAttribute("NOTE", "Đăng ký thành công");
+			sesion.setAttribute("erro", "Đăng ký thành công");
+			//req.setAttribute("NOTE", "Đăng ký thành công");
 		}
 
 		return "register";
@@ -131,7 +136,8 @@ public class Home {
 				session.setAttribute("user", username);
 				return "redirect:index";
 			} else {
-				req.setAttribute("Note", "Vui lòng kiểm tra lại thông tin");
+				session.setAttribute("erro", "Vui lòng kiểm tra lại thông tin");
+				//req.setAttribute("Note", "Vui lòng kiểm tra lại thông tin");
 			}
 		}
 		return "login";
@@ -139,11 +145,16 @@ public class Home {
 	
 	
 	@RequestMapping(value = { "/", "index" })
-	public String List(Model model) {
+	public String List(Model model, @RequestParam(value = "idTL", defaultValue = "0") int idTL) {
 		List<TheLoai> listTheLoai = theLoaiService.getAll();
 		model.addAttribute("list2", listTheLoai);
 		List<Sach> listSach = sachService.getAll();
 		model.addAttribute("list", listSach);
+		
+		//Này nè
+		List<Sach> listSachTL = sachService.getSachTL(idTL);
+		model.addAttribute("listTL", listSachTL); //vãi chưởng khải
+		
 		List<User> listUser=userService.getAll();
 		model.addAttribute("listuser", listUser);
 		return "index";
@@ -170,23 +181,29 @@ public class Home {
 	}
 	
 	@PostMapping("xuLySua")
-	public String xulySua(@RequestParam("tensach") String tenSach,
-			@RequestParam("idtacgia") int idTacGia,
-			@RequestParam("idtheloai") int idTheLoai,
-			@RequestParam("image") MultipartFile file,
-			@RequestParam("ghichu") String ghiChu,
-			@RequestParam("dongia") Float donGia,
+	public String xulySua(Model model,//@RequestParam("tensach") String tenSach,
+			//@RequestParam("idtacgia") int idTacGia,
+			//@RequestParam("idtheloai") int idTheLoai,
+			//@RequestParam("image") MultipartFile file,
+			//@RequestParam("ghichu") String ghiChu,
+			//@RequestParam("dongia") Float donGia,
 			HttpServletRequest req) {
+		
+		String tenSach = req.getParameter("tenSach");
+		int idTacGia = Integer.parseInt(req.getParameter("idtacgia"));
+		int idTheLoai = Integer.parseInt(req.getParameter("idtheloai"));
+		String ghiChu = req.getParameter("ghichu");
+		int donGia = Integer.parseInt(req.getParameter("dongia"));
 		
 		Sach sach=new Sach();
 		sach.setTenSach(tenSach);
 		sach.setTacGia(tacGiaService.selectTacGia(idTacGia));
 		sach.setTheLoai(theLoaiService.selectTheLoai(idTheLoai));
-		sach.setHinhAnh(sachService.processFile(file));
+		//sach.setHinhAnh(sachService.processFile(file));
 		sach.setGhiChu(ghiChu);
 		sach.setDonGia(donGia);
 		sachService.suaSach(sach);
-		return "redirect:productindex";
+		return "redirect:/productindex";
 	}
 	
 	@RequestMapping(value= {"/delete"})
@@ -222,6 +239,14 @@ public class Home {
 	public String giohang() {
 		return "giohang";
 	}
+	
+	/*
+	 * @RequestMapping("test") public String test(Model model,@RequestParam(value =
+	 * "idTL", defaultValue = "0") int idTL) { List<Sach> listSachTL =
+	 * sachService.getSachTL(idTL); model.addAttribute("list", listSachTL);
+	 * 
+	 * return "test"; }
+	 */
 	//Xóa giỏ hàng
 	@RequestMapping("deleteShopCart")
 	public String deleteGioHang(Model model, HttpSession session) {
@@ -252,7 +277,17 @@ public class Home {
 		  session.setAttribute("cart", cart);
 		return "giohang";
 	}
-	
+	//Update giỏ hàng
+	@RequestMapping("updateShopcart")
+	public String updateQuantiy(Model model,HttpServletRequest req, HttpSession session) {
+		List<Item> cart=(List<Item>) session.getAttribute("cart");
+		String []quantity=req.getParameterValues("quantity");
+		for(int i = 0; i<cart.size(); i++) {
+			cart.get(i).setQuantity(Integer.parseInt(quantity[i]));
+		}
+		session.setAttribute("cart", cart);
+		return "giohang";
+	}
 	@RequestMapping(value= {"muahang"})
 	public String cart(Model model, HttpSession session,
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
@@ -288,6 +323,26 @@ public class Home {
 		return "giohang";
 	}
 
+	@RequestMapping("xemchitiet")
+	public String xemchitiet(Model model, HttpSession session,
+			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
+		
+		Sach sach=sachService.getId(idSach);
+		List<Sach> listSach = sachService.getAll();
+		model.addAttribute("list", listSach);
+		model.addAttribute("xemchitiet",sach);
+		return "xemchitiet";
+	}
+	@RequestMapping("thanhtoan")
+	public String thanhtoan(HttpSession session) {
+		if(session.getAttribute("user")==null) {
+			return "redirect:login";
+		}
+		else {
+			
+			return "thanhtoan";
+		}		
+	}
 	
 
 }

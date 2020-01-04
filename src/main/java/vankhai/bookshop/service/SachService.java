@@ -46,6 +46,12 @@ public class SachService {
 	public List<Sach> getSach(int idSach){
 		return sachDao.getSach(idSach);
 	}
+	
+	public List<Sach> getSachTL(int idtheLoai){
+		return sachDao.getSachTL(idtheLoai);
+	}
+	
+	
 
 	
 }

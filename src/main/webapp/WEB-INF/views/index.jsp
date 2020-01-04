@@ -57,26 +57,44 @@
     </ol>
 <h1 class="my-4" style="text-align: center;">Sản phẩm</h1>
 		<!-- Page Features -->
+		
 		<div class="row text-center">
-			<c:forEach items="${list}" var="list">
-				<div class="col-lg-3 col-md-6 mb-4">
-					<div class="card h-100">
-						<img class="card-img-top" src="img/${list.hinhAnh}" style="width: 255px;height: 255px;">
-						<div class="card-body">
-							<h4 class="card-title">${list.tenSach}</h4>
-						</div>
-							
-							<h5 class="card-title" style="color: red;	"> Giá: ${list.donGia} VNĐ </h5>
-						<div class="card-footer">
-							<a href="muahang?idSach=${list.idSach}" class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i> Thêm vào giỏ</a>
+			<c:if test="${param.idTL == null}">
+				<c:forEach items="${list}" var="list">
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class="card h-100">
+							<a href="xemchitiet.html?idSach=${list.idSach}"><img class="card-img-top" src="img/${list.hinhAnh}" style="width: 255px;height: 255px;"></a>
+							<div class="card-body">
+								<h4 class="card-title">${list.tenSach}</h4>
+							</div>
+								
+								<h5 class="card-title" style="color: red;	"> Giá: ${list.donGia} VNĐ </h5>
+							<div class="card-footer">
+								<a href="muahang?idSach=${list.idSach}" class="btn btn-warning"><i class="fas fa-cart-arrow-down"></i> Thêm vào giỏ</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			</c:forEach>
-
+				</c:forEach>
+			</c:if>
+			<c:if test="${param.idTL != null}">
+				<c:forEach items="${listTL}" var="listTL">
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class="card h-100">
+							<a href="xemchitiet.html?idSach=${listTL.idSach}"><img class="card-img-top" src="img/${listTL.hinhAnh}" style="width: 255px;height: 255px;"></a>
+							<div class="card-body">
+								<h4 class="card-title">${listTL.tenSach}</h4>
+							</div>
+								
+								<h5 class="card-title" style="color: red;	"> Giá: ${listTL.donGia} VNĐ </h5>
+							<div class="card-footer">
+								<a href="muahang?idSach=${listTL.idSach}" class="btn btn-warning"><i class="fas fa-cart-arrow-down"></i> Thêm vào giỏ</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
 		</div>
 		<!-- /.row -->
-
 	</div>
 	<!-- /.container -->
 
@@ -86,7 +104,6 @@
 			<p class="m-0 text-center text-white">Copyright &copy; Your
 				Website 2019</p>
 		</div>
-		<!-- /.container -->
 	</footer>
 
 
