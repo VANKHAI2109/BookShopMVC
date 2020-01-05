@@ -107,17 +107,17 @@ public class Home {
 		User user = new User(username, pass, email);
 		String pass2 = req.getParameter("password2");
 		if(userService.checktrunguser(username)==true) {
-			sesion.setAttribute("erro", "Trùng user");
-			//req.setAttribute("NOTE", "Trùng user");
+			sesion.setAttribute("erro", "TrÃ¹ng user");
+			//req.setAttribute("NOTE", "TrÃ¹ng user");
 		}
 		else if (pass.equals(pass2) == false) {
-			sesion.setAttribute("erro", "Mật khẩu không trùng khớp");
-			//req.setAttribute("NOTE", "Mật khẩu không trùng khớp");
+			sesion.setAttribute("erro", "Máº­t kháº©u khÃ´ng trÃ¹ng khá»›p");
+			//req.setAttribute("NOTE", "Máº­t kháº©u khÃ´ng trÃ¹ng khá»›p");
 		}
 		else {		
 			userService.saverUser(user);
-			sesion.setAttribute("erro", "Đăng ký thành công");
-			//req.setAttribute("NOTE", "Đăng ký thành công");
+			sesion.setAttribute("erro", "Ä�Äƒng kÃ½ thÃ nh cÃ´ng");
+			//req.setAttribute("NOTE", "Ä�Äƒng kÃ½ thÃ nh cÃ´ng");
 		}
 
 		return "register";
@@ -136,8 +136,8 @@ public class Home {
 				session.setAttribute("user", username);
 				return "redirect:index";
 			} else {
-				session.setAttribute("erro", "Vui lòng kiểm tra lại thông tin");
-				//req.setAttribute("Note", "Vui lòng kiểm tra lại thông tin");
+				session.setAttribute("erro", "Vui lÃ²ng kiá»ƒm tra láº¡i thÃ´ng tin");
+				//req.setAttribute("Note", "Vui lÃ²ng kiá»ƒm tra láº¡i thÃ´ng tin");
 			}
 		}
 		return "login";
@@ -151,9 +151,9 @@ public class Home {
 		List<Sach> listSach = sachService.getAll();
 		model.addAttribute("list", listSach);
 		
-		//Này nè
+		//NÃ y nÃ¨
 		List<Sach> listSachTL = sachService.getSachTL(idTL);
-		model.addAttribute("listTL", listSachTL); //vãi chưởng khải
+		model.addAttribute("listTL", listSachTL); //vÃ£i chÆ°á»Ÿng kháº£i
 		
 		List<User> listUser=userService.getAll();
 		model.addAttribute("listuser", listUser);
@@ -220,7 +220,7 @@ public class Home {
 		TheLoai theLoaiCuaSach;
 		List<TacGia> allTacGia;
 		List<TheLoai> allTheLoai;
-		//này để hiển thị trong value option, còn hiển thị ở ngoài là cả bảng tacgia
+		//nÃ y Ä‘á»ƒ hiá»ƒn thá»‹ trong value option, cÃ²n hiá»ƒn thá»‹ á»Ÿ ngoÃ i lÃ  cáº£ báº£ng tacgia
 		tacGiaCuaSach = tacGiaService.selectTacGia(sach.getTacGia().getId());
 		theLoaiCuaSach = theLoaiService.selectTheLoai(sach.getTheLoai().getId());
 		
@@ -247,20 +247,20 @@ public class Home {
 	 * 
 	 * return "test"; }
 	 */
-	//Xóa giỏ hàng
+	//XÃ³a giá»� hÃ ng
 	@RequestMapping("deleteShopCart")
 	public String deleteGioHang(Model model, HttpSession session) {
 		session.removeAttribute("cart");
 		return "giohang";
 	}
 	
-	//Xóa giỏ hàng
+	//XÃ³a giá»� hÃ ng
 	@RequestMapping("muaHang")
 	public String TiepTucMuaHang(Model model, HttpSession session) {
 		return "redirect:index";
 	}
 	
-	//Xóa sách trong giỏ
+	//XÃ³a sÃ¡ch trong giá»�
 	@RequestMapping("xoa")
 	public String XoaSach(Model model, HttpSession session,
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
@@ -277,7 +277,7 @@ public class Home {
 		  session.setAttribute("cart", cart);
 		return "giohang";
 	}
-	//Update giỏ hàng
+	//Update giá»� hÃ ng
 	@RequestMapping("updateShopcart")
 	public String updateQuantiy(Model model,HttpServletRequest req, HttpSession session) {
 		List<Item> cart=(List<Item>) session.getAttribute("cart");
@@ -292,7 +292,7 @@ public class Home {
 	public String cart(Model model, HttpSession session,
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
 		
-		  //Nếu chưa có tạo mói
+		  //Náº¿u chÆ°a cÃ³ táº¡o mÃ³i
 		  if(session.getAttribute("cart")==null) 
 		  { 
 			  List<Item> cart=new ArrayList<Item>(); 
@@ -328,6 +328,18 @@ public class Home {
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
 		
 		Sach sach=sachService.getId(idSach);
+		
+		TacGia tacGiaCuaSach;
+		TheLoai theLoaiCuaSach;
+		List<TacGia> allTacGia;
+		List<TheLoai> allTheLoai;
+		//này để hiển thị trong value option, còn hiển thị ở ngoài là cả bảng tacgia
+		tacGiaCuaSach = tacGiaService.selectTacGia(sach.getTacGia().getId());
+		theLoaiCuaSach = theLoaiService.selectTheLoai(sach.getTheLoai().getId());
+	
+		model.addAttribute("theloai", theLoaiCuaSach);
+		model.addAttribute("tacGia", tacGiaCuaSach);
+		
 		List<Sach> listSach = sachService.getAll();
 		model.addAttribute("list", listSach);
 		model.addAttribute("xemchitiet",sach);
