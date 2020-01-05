@@ -68,19 +68,14 @@ public class SachDao {
 		
 	}
 	
-	/*
-	 * public List<Sach> getSachThamKhao(int id) { Session session =
-	 * this.sessionFactory.getCurrentSession(); String sql = "from " +
-	 * Sach.class.getName() + " where " + id + "=?"; Query<Sach> query =
-	 * session.createQuery(sql); return query.getResultList(); }
-	 */
+	
 	public List<Sach> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
 		String sql = "from " + Sach.class.getName();
 		Query<Sach> query = session.createQuery(sql);
 		return query.getResultList();
 	}
-// này
+
 	public List<Sach> getSachTL(int idtheLoai) {
 		Session session = this.sessionFactory.getCurrentSession();
 		String sql = "from " + Sach.class.getName() + " s where s.theLoai.id = " +idtheLoai ;
@@ -88,4 +83,10 @@ public class SachDao {
 		return query.getResultList();
 	}
 	
+	public List<Sach> timkiem(String tenSach) {
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql = "from " + Sach.class.getName() + " s where s.tenSach like '%"+tenSach+"%'";
+		Query<Sach> query = session.createQuery(sql);
+		return query.getResultList();
+	}
 }

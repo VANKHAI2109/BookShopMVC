@@ -356,5 +356,12 @@ public class Home {
 		}		
 	}
 	
+	@RequestMapping("timkiem")
+	public String timkiem(Model model, HttpServletRequest req) {
+		String tenSach=req.getParameter("key");
+		List<Sach> kq=sachService.timkiem(tenSach);
+		model.addAttribute("kq", kq);
+		return "KetQuaTimKiem";	
+	}
 
 }
