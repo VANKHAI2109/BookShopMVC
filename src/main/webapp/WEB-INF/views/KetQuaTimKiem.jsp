@@ -31,7 +31,7 @@
     </ol>
 <h1 class="my-4" style="text-align: center;">Sản phẩm</h1>
 		<!-- Page Features -->
-		
+		<div>${Note}</div>
 		<div class="row text-center">
 				<c:forEach items="${kq}" var="kq">
 					<div class="col-lg-3 col-md-6 mb-4">

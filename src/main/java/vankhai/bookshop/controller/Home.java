@@ -107,16 +107,16 @@ public class Home {
 		User user = new User(username, pass, email);
 		String pass2 = req.getParameter("password2");
 		if(userService.checktrunguser(username)==true) {
-			sesion.setAttribute("erro", "TrÃ¹ng user");
+			sesion.setAttribute("erro", "Trùng user");
 			//req.setAttribute("NOTE", "TrÃ¹ng user");
 		}
 		else if (pass.equals(pass2) == false) {
-			sesion.setAttribute("erro", "Máº­t kháº©u khÃ´ng trÃ¹ng khá»›p");
+			sesion.setAttribute("erro", "Mật khẩu không trùng khớp");
 			//req.setAttribute("NOTE", "Máº­t kháº©u khÃ´ng trÃ¹ng khá»›p");
 		}
 		else {		
 			userService.saverUser(user);
-			sesion.setAttribute("erro", "Ä�Äƒng kÃ½ thÃ nh cÃ´ng");
+			sesion.setAttribute("erro", "Đăng ký thành công!");
 			//req.setAttribute("NOTE", "Ä�Äƒng kÃ½ thÃ nh cÃ´ng");
 		}
 
@@ -136,7 +136,7 @@ public class Home {
 				session.setAttribute("user", username);
 				return "redirect:index";
 			} else {
-				session.setAttribute("erro", "Vui lÃ²ng kiá»ƒm tra láº¡i thÃ´ng tin");
+				session.setAttribute("erro", "Vui lòng kiểm tra lại thông tin");
 				//req.setAttribute("Note", "Vui lÃ²ng kiá»ƒm tra láº¡i thÃ´ng tin");
 			}
 		}
@@ -360,7 +360,14 @@ public class Home {
 	public String timkiem(Model model, HttpServletRequest req) {
 		String tenSach=req.getParameter("key");
 		List<Sach> kq=sachService.timkiem(tenSach);
-		model.addAttribute("kq", kq);
+		if(kq.size()>=1) {
+			model.addAttribute("kq", kq);
+		}
+		else {
+			model.addAttribute("Note", " Không có sản phẩm nào phù hợp!");
+			return "KetQuaTimKiem";
+		}
+		
 		return "KetQuaTimKiem";	
 	}
 

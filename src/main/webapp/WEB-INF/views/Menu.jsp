@@ -39,7 +39,7 @@
 					<li class="nav-item active"><a class="nav-link" id="color" href="diachi">Địa chỉ</a></li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0" style="margin-right: 90px;" action="timkiem">
-					<input class="form-control mr-sm-2" type="search" name="key"
+					<input class="form-control mr-sm-2" type="search" name="key" required
 						placeholder="Nhập tên sản phẩm..." aria-label="Search">
 					<button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
 				</form>
