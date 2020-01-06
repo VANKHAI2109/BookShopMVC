@@ -39,18 +39,18 @@
 			<form action="dongy" method="post" class="fix">
 				<div class="form-group">
 					<label for="exampleInputEmail1" style="float: left;">Tên
-						khách hàng</label> <input type="text" class="form-control" maxlength="15"
+						khách hàng</label> <input type="text" class="form-control" maxlength="40"
 						pattern="^[a-zA-Z0-9_.-]*$" required aria-describedby="emailHelp"
 						placeholder="Họ và tên" name="name">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1" style="float: left;">Địa
-						chỉ</label> <input type="text" class="form-control" maxlength="15"
+						chỉ</label> <input type="text" class="form-control" maxlength="200"
 						required placeholder="Địa chỉ" name="address">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1" style="float: left;">Số
-						điện thoại</label> <input type="text" class="form-control" maxlength="15"
+						điện thoại</label> <input type="text" class="form-control" maxlength="11"
 						required placeholder="SĐT" name="sdt">
 				</div>
 				<button type="submit" class="btn btn-success btn-lg btn-block"

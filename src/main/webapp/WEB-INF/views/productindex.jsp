@@ -74,7 +74,7 @@
 							<div class="card-body">
 								<div class="form-group">
 									<label for="inputName">Tên sách</label> <input type="text"
-										class="form-control" name="tensach"
+										class="form-control" name="tensach" required
 										placeholder="Nhập tên sách">
 								</div>
 								
@@ -107,12 +107,12 @@
 								</div>
 								<div class="form-group">
 									<label for="inputPrice">Ghi chú</label> <input type="text"
-										class="form-control" name="ghichu"
-										placeholder="Giá">
+										class="form-control" name="ghichu" required
+										placeholder="Nhập ghi chú cho sách">
 								</div>
 								<div class="form-group">
-									<label for="inputPrice">Đơn giá</label> <input type="text"
-										class="form-control" name="dongia"
+									<label for="inputPrice">Đơn giá</label> <input type="text" required
+										class="form-control" name="dongia" 
 										placeholder="Giá">
 								</div>
 							</div>
