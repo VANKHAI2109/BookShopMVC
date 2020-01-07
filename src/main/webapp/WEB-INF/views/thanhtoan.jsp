@@ -40,33 +40,17 @@
 				<div class="form-group">
 					<label for="exampleInputEmail1" style="float: left;">Tên
 						khách hàng</label> <input type="text" class="form-control" maxlength="100"
-<<<<<<< HEAD
-						 required aria-describedby="emailHelp"
-=======
-						 required 
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
+						 required aria-describedby="emailHelp" required 
 						placeholder="Họ và tên" name="name">
 				</div>
 				<div class="form-group">
-					<label for="exampleInputPassword1" style="float: left;">Địa
-<<<<<<< HEAD
-						chỉ</label> <input type="text" class="form-control" maxlength="100"
-=======
-						chỉ</label> <input type="text" class="form-control" maxlength="200"
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
-						required placeholder="Địa chỉ" name="address">
+					<label for="exampleInputPassword1" style="float: left;">Địa chỉ</label> <input type="text" class="form-control" maxlength="100" required placeholder="Địa chỉ" name="address">
 				</div>
-				<!-- <div class="form-group">
+				<div class="form-group">
 					<label for="exampleInputPassword1" style="float: left;">Số
-<<<<<<< HEAD
 						điện thoại</label> <input type="text" class="form-control" maxlength="10"
 						required placeholder="SĐT" name="sdt">
-				</div> 
-=======
-						điện thoại</label> <input type="text" class="form-control" maxlength="11"
-						required placeholder="SĐT" name="sdt">
-				</div> -->
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
+				</div>
 				<button type="submit" class="btn btn-success btn-lg btn-block"
 					style="width: 25%; margin-left: 35%">Đồng ý</button>
 			</form>

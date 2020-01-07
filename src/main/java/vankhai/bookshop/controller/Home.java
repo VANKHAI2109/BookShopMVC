@@ -80,7 +80,7 @@ public class Home {
 		return "login";
 	}
 
-	//Trang quản lý sản phẩm
+	//Trang quáº£n lÃ½ sáº£n pháº©m
 	@RequestMapping("productindex")
 	public String productIndex(Model model) {
 		List<TheLoai> listTheLoai = theLoaiService.getAll();
@@ -94,7 +94,7 @@ public class Home {
 		return "productindex";
 	}	
 	
-	//Trang đăng ký
+	//Trang Ä‘Äƒng kÃ½
 	@RequestMapping("register")
 	public String register(Model model, HttpSession session) {
 		List<TheLoai> listTheLoai = theLoaiService.getAll();
@@ -105,7 +105,7 @@ public class Home {
 		return "register";
 	}
 	
-	// Hàm xử lý thêm user
+	// HÃ m xá»­ lÃ½ thÃªm user
 	@PostMapping("saveUser")
 	public String register(Model model, HttpServletRequest req, HttpSession sesion) {
 		String username = req.getParameter("username");
@@ -114,23 +114,23 @@ public class Home {
 		User user = new User(username, pass, email);
 		String pass2 = req.getParameter("password2");
 		if(userService.checktrunguser(username)==true) {
-			sesion.setAttribute("erro", "Trùng user");
-			//req.setAttribute("NOTE", "TrÃ¹ng user");
+			sesion.setAttribute("erro", "TrÃ¹ng user");
+		
 		}
 		else if (pass.equals(pass2) == false) {
-			sesion.setAttribute("erro", "Mật khẩu không trùng khớp");
-			//req.setAttribute("NOTE", "Máº­t kháº©u khÃ´ng trÃ¹ng khá»›p");
+			sesion.setAttribute("erro", "Mật khẩu không trung khớp");
+			
 		}
 		else {		
 			userService.saverUser(user);
 			sesion.setAttribute("erro", "Đăng ký thành công!");
-			//req.setAttribute("NOTE", "Ä�Äƒng kÃ½ thÃ nh cÃ´ng");
+			
 		}
 
 		return "register";
 	}
 
-	//kiểm tra trùng user
+	//kiá»ƒm tra trÃ¹ng user
 	@PostMapping("xuly")
 	public String checklogin(HttpServletRequest req) {
 		HttpSession session=req.getSession();
@@ -144,8 +144,8 @@ public class Home {
 				session.setAttribute("user", username);
 				return "redirect:index";
 			} else {
-				session.setAttribute("erro", "Vui lòng kiểm tra lại thông tin");
-				//req.setAttribute("Note", "Vui lÃ²ng kiá»ƒm tra láº¡i thÃ´ng tin");
+				session.setAttribute("erro", "Vui lòng kiểm tra lại thông tin!");
+				
 			}
 		}
 		return "login";
@@ -160,20 +160,14 @@ public class Home {
 		List<Sach> listSach = sachService.getAll();
 		model.addAttribute("list", listSach);
 		
-		//NÃ y nÃ¨
 		List<Sach> listSachTL = sachService.getSachTL(idTL);
-<<<<<<< HEAD
 		model.addAttribute("listTL", listSachTL); 
-=======
-		model.addAttribute("listTL", listSachTL); //vÃ£i chÆ°á»Ÿng kháº£i
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
-		
 		List<User> listUser=userService.getAll();
 		model.addAttribute("listuser", listUser);
 		return "index";
 	}
 	
-	//Xử lý thêm sách
+	//Xá»­ lÃ½ thÃªm sÃ¡ch
 	@PostMapping("xuLyThemSach")
 	public String xyLyAnh(@RequestParam("tensach") String tenSach,
 			@RequestParam("idtacgia") int idTacGia,
@@ -194,7 +188,7 @@ public class Home {
 		return "redirect:productindex";
 	}
 	
-	//Xử lý sửa sách
+	//Xá»­ lÃ½ sá»­a sÃ¡ch
 	@PostMapping("xuLySua")
 	public String xulySua(Model model,//@RequestParam("tensach") String tenSach,
 			//@RequestParam("idtacgia") int idTacGia,
@@ -221,14 +215,14 @@ public class Home {
 		return "redirect:/productindex";
 	}
 	
-	//Xử lý xóa sách
+	//Xá»­ lÃ½ xÃ³a sÃ¡ch
 	@RequestMapping(value= {"/delete"})
 	public String xoaSach(@RequestParam(value="idSach") int id){
 		sachService.xoaSach(id);
 		return "redirect:/productindex";
 	}
 	
-	//Xử lý sửa sách
+	//Xá»­ lÃ½ sá»­a sÃ¡ch
 	@RequestMapping("update")
 	public String update(@RequestParam("idSach") int id,Model model) {
 		Sach sach=sachService.getId(id);
@@ -237,7 +231,7 @@ public class Home {
 		TheLoai theLoaiCuaSach;
 		List<TacGia> allTacGia;
 		List<TheLoai> allTheLoai;
-		//nÃ y Ä‘á»ƒ hiá»ƒn thá»‹ trong value option, cÃ²n hiá»ƒn thá»‹ á»Ÿ ngoÃ i lÃ  cáº£ báº£ng tacgia
+		//nÃƒÂ y Ã„â€˜Ã¡Â»Æ’ hiÃ¡Â»Æ’n thÃ¡Â»â€¹ trong value option, cÃƒÂ²n hiÃ¡Â»Æ’n thÃ¡Â»â€¹ Ã¡Â»Å¸ ngoÃƒÂ i lÃƒÂ  cÃ¡ÂºÂ£ bÃ¡ÂºÂ£ng tacgia
 		tacGiaCuaSach = tacGiaService.selectTacGia(sach.getTacGia().getId());
 		theLoaiCuaSach = theLoaiService.selectTheLoai(sach.getTheLoai().getId());
 		
@@ -251,10 +245,7 @@ public class Home {
 		
 		return "SuaSach";
 	}
-<<<<<<< HEAD
-		
-	//Xóa sách trong giỏ
-=======
+
 	
 	@RequestMapping("giohang")
 	public String giohang() {
@@ -268,21 +259,17 @@ public class Home {
 	 * 
 	 * return "test"; }
 	 */
-	//XÃ³a giá»� hÃ ng
+	//XÃƒÂ³a giÃ¡Â»ï¿½ hÃƒÂ ng
 	@RequestMapping("deleteShopCart")
 	public String deleteGioHang(Model model, HttpSession session) {
 		session.removeAttribute("cart");
 		return "giohang";
 	}
 	
-	//XÃ³a giá»� hÃ ng
 	@RequestMapping("muaHang")
 	public String TiepTucMuaHang(Model model, HttpSession session) {
 		return "redirect:index";
 	}
-	
-	//XÃ³a sÃ¡ch trong giá»�
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 	@RequestMapping("xoa")
 	public String XoaSach(Model model, HttpSession session,
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
@@ -299,7 +286,7 @@ public class Home {
 		  session.setAttribute("cart", cart);
 		return "giohang";
 	}
-	//Update giá»� hÃ ng
+	//Update giÃ¡Â»ï¿½ hÃƒÂ ng
 	@RequestMapping("updateShopcart")
 	public String updateQuantiy(Model model,HttpServletRequest req, HttpSession session) {
 		List<Item> cart=(List<Item>) session.getAttribute("cart");
@@ -311,12 +298,12 @@ public class Home {
 		return "giohang";
 	}
 	
-	//Xử lý thêm vào giỏ hàng
+	//Xá»­ lÃ½ thÃªm vÃ o giá»� hÃ ng
 	@RequestMapping(value= {"muahang"})
 	public String cart(Model model, HttpSession session,
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
 		
-		  //Náº¿u chÆ°a cÃ³ táº¡o mÃ³i
+		  //NÃ¡ÂºÂ¿u chÃ†Â°a cÃƒÂ³ tÃ¡ÂºÂ¡o mÃƒÂ³i
 		  if(session.getAttribute("cart")==null) 
 		  { 
 			  List<Item> cart=new ArrayList<Item>(); 
@@ -347,7 +334,7 @@ public class Home {
 		return "giohang";
 	}
 
-	//Xem chi tiết sách
+	//Xem chi tiáº¿t sÃ¡ch
 	@RequestMapping("xemchitiet")
 	public String xemchitiet(Model model, HttpSession session,
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
@@ -358,11 +345,7 @@ public class Home {
 		TheLoai theLoaiCuaSach;
 		List<TacGia> allTacGia;
 		List<TheLoai> allTheLoai;
-<<<<<<< HEAD
-		
-=======
-		//này để hiển thị trong value option, còn hiển thị ở ngoài là cả bảng tacgia
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
+
 		tacGiaCuaSach = tacGiaService.selectTacGia(sach.getTacGia().getId());
 		theLoaiCuaSach = theLoaiService.selectTheLoai(sach.getTheLoai().getId());
 	
@@ -375,7 +358,7 @@ public class Home {
 		return "xemchitiet";
 	}
 	
-	//Trang thanh toán
+	//Trang thanh toÃ¡n
 	@RequestMapping("thanhtoan")
 	public String thanhtoan(HttpSession session) {	
 		
@@ -388,34 +371,28 @@ public class Home {
 		}		
 	}
 	
-<<<<<<< HEAD
-	//Xử lý thanh toán
-=======
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
+	@RequestMapping("AdminIndex")
+	public String admin(HttpSession session) {	
+			
+			return "AdminIndex";	
+	}
+
 	@RequestMapping("xlthanhtoan")
 	public String XLThanhToan(HttpSession session,HttpServletRequest req,Model model) {
 		
 		List<Item> cart=(List<Item>) session.getAttribute("cart");
 		String tenKhachHang=req.getParameter("name");
 		String diaChi=req.getParameter("address");
-<<<<<<< HEAD
 		int sdt=Integer.parseInt(req.getParameter("sdt"));
 		String name=(String) session.getAttribute("user");
-=======
-		String sdt=req.getParameter("sdt");
 		
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		HoaDon hoadon=new HoaDon();
 		hoadon.setNgayDatHang(new Date());
 		hoadon.setTenKhachHang(tenKhachHang);
 		hoadon.setDiaChi(diaChi);
-<<<<<<< HEAD
 		hoadon.setSdt(sdt);
 		hoadon.setName(name);
 		
-=======
-		hoadon.setName("HDM");
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		hoaDonService.LuuHoaDon(hoadon);
 		
 		for(int i = 0; i<cart.size(); i++) {
@@ -429,18 +406,14 @@ public class Home {
 			hdChitietService.luuHDCT(hdChiTiet);
 		}
 		session.removeAttribute("cart");
-<<<<<<< HEAD
+
 		model.addAttribute("kq", "Đặt hàng thành công! Vui lòng đợi thông tin từ Shop ^^");
 		return "giohang";
 	}
 	
-	//Xử lý tìm kiếm
-=======
-		model.addAttribute("kq", "Thanh toán thành công !");
-		return "giohang";
-	}
+
 	
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
+
 	@RequestMapping("timkiem")
 	public String timkiem(Model model, HttpServletRequest req) {
 		String tenSach=req.getParameter("key");
@@ -448,21 +421,15 @@ public class Home {
 		if(kq.size()>=1) {
 			model.addAttribute("kq", kq);
 		}
-<<<<<<< HEAD
 		else{
-			model.addAttribute("Null", "Không tìm thấy sản phẩm nào phù hợp?");
+			model.addAttribute("Null", "Không tìm thấy sản phầm nào phù hợp?");
 			return "KetQuaTimKiem";	
-=======
-		else {
-			model.addAttribute("Note", " Không có sản phẩm nào phù hợp!");
-			return "KetQuaTimKiem";
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		}
 		
 		return "KetQuaTimKiem";	
 	}
-<<<<<<< HEAD
-	
+
+
 	@RequestMapping("diachi")
 	public String diaChi() {
 		return "diachi";
@@ -475,54 +442,8 @@ public class Home {
 		return "login";
 	}
 	
-	@RequestMapping("HoaDon")
-	public String DoiMatKhau(Model model, @RequestParam(value = "name", defaultValue = "0") String User) {
-		List<HoaDon> kq=hoaDonService.thongtinHD(User);
-		model.addAttribute("thongtin", kq);
-		return "HoaDon";
-	}
-	
-	@RequestMapping("danhmucsach")
-	public String DanhMuc(Model model) {
-		//userService.getIdUser(id);
-		return "danhmucsach";
-	}
-	
-	@RequestMapping("AdminIndex")
-	public String AdminIndex() {
-		return "AdminIndex";
-	}
+
+
 	
 
-	@RequestMapping("thongtinuser")
-	public String thongTinUser() {
-		return "thongtinuser";
-	}
-=======
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
-
-	@RequestMapping("giohang")
-	public String giohang() {
-		return "giohang";
-	}
-	
-	/*
-	 * @RequestMapping("test") public String test(Model model,@RequestParam(value =
-	 * "idTL", defaultValue = "0") int idTL) { List<Sach> listSachTL =
-	 * sachService.getSachTL(idTL); model.addAttribute("list", listSachTL);
-	 * 
-	 * return "test"; }
-	 */
-	//Xóa giỏ hàng
-	@RequestMapping("deleteShopCart")
-	public String deleteGioHang(Model model, HttpSession session) {
-		session.removeAttribute("cart");
-		return "giohang";
-	}
-	
-	//Xóa giỏ hàng
-	@RequestMapping("muaHang")
-	public String TiepTucMuaHang(Model model, HttpSession session) {
-		return "redirect:index";
-	}
 }

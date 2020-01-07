@@ -19,55 +19,39 @@ public class HoaDon implements Serializable{
 	private Date ngayDatHang;
 	private String tenKhachHang;
 	private String diaChi;
-<<<<<<< HEAD
 	private int sdt;
+	
+	
+	
 	public HoaDon() {
 		super();
 	}
 	
+
 	
-	
+	public HoaDon(String name, Date ngayDatHang, String tenKhachHang, String diaChi, int sdt) {
+		super();
+		this.name = name;
+		this.ngayDatHang = ngayDatHang;
+		this.tenKhachHang = tenKhachHang;
+		this.diaChi = diaChi;
+		this.sdt = sdt;
+	}
+
+
+
 	public HoaDon(int id, String name, Date ngayDatHang, String tenKhachHang, String diaChi, int sdt) {
-=======
-	public HoaDon() {
-		super();
-	}
-	public HoaDon(int id, String name, Date ngayDatHang, String tenKhachHang, String diaChi) {
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		super();
 		this.id = id;
 		this.name = name;
 		this.ngayDatHang = ngayDatHang;
 		this.tenKhachHang = tenKhachHang;
 		this.diaChi = diaChi;
-<<<<<<< HEAD
 		this.sdt = sdt;
 	}
 
 
 
-	
-	
-	public HoaDon(String name, Date ngayDatHang, String tenKhachHang, String diaChi, int sdt) {
-=======
-	}
-	public HoaDon(String name, Date ngayDatHang, String tenKhachHang, String diaChi) {
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
-		super();
-		this.name = name;
-		this.ngayDatHang = ngayDatHang;
-		this.tenKhachHang = tenKhachHang;
-		this.diaChi = diaChi;
-<<<<<<< HEAD
-		this.sdt = sdt;
-	}
-
-
-
-=======
-	}
-	
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -109,9 +93,6 @@ public class HoaDon implements Serializable{
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
-<<<<<<< HEAD
-
-
 
 	@Column(name="Sdt")
 	public int getSdt() {
@@ -121,8 +102,7 @@ public class HoaDon implements Serializable{
 	public void setSdt(int sdt) {
 		this.sdt = sdt;
 	}
-=======
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
+
 	
 	
 	

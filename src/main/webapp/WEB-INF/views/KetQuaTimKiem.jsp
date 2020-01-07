@@ -11,37 +11,28 @@
 
 <title>Search</title>
 
-
-
 </head>
 <body>
 	<!-- Star Menu -->
 	<jsp:include page="Menu.jsp"></jsp:include>
 	<!-- End Menu -->
 	<!-- Page Content -->
-	
-	  <header>
-  </header>
+
+	<header> </header>
 	<div class="container">
-	<ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Kết quả tìm kiếm</li>
-    </ol>
-<h1 class="my-4" style="text-align: center;">Sản phẩm</h1>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+			<li class="breadcrumb-item active">Kết quả tìm kiếm</li>
+		</ol>
+		<h1 class="my-4" style="text-align: center;">Sản phẩm</h1>
 		<!-- Page Features -->
-<<<<<<< HEAD
 		<h5>${Null}</h5>
-		<div class="row text-center">				
-=======
-		<div>${Note}</div>
+		
 		<div class="row text-center">
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 				<c:forEach items="${kq}" var="kq">
 					<div class="col-lg-3 col-md-6 mb-4">
 						<div class="card h-100">
-							<a href="xemchitiet.html?idSach=${kq.idSach}"><img class="card-img-top" src="img/${kq.hinhAnh}" style="width: 255px;height: 255px;"></a>
+							<a href="xemchitiet.html?idSach=${list.idSach}"><img class="card-img-top" src="img/${kq.hinhAnh}" style="width: 255px;height: 255px;"></a>
 							<div class="card-body">
 								<h4 class="card-title">${kq.tenSach}</h4>
 							</div>
@@ -53,25 +44,19 @@
 						</div>
 					</div>
 				</c:forEach>
-<<<<<<< HEAD
-=======
-
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 			
-		<!-- /.row -->
+		</div>
+		
 	</div>
-	<!-- /.container -->
-
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2019</p>
+			<p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
 		</div>
 	</footer>
 
 
-	
+
 </body>
 
 </html>

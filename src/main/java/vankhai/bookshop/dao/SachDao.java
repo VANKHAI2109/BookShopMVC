@@ -24,9 +24,8 @@ public class SachDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
-
 	public String processFile(MultipartFile file) {
-		String UPLOADED_FOLDER = "C:/Users/Boss/Desktop/BookShopMVC/src/main/webapp/img/";
+		String UPLOADED_FOLDER = "E:/BookShopMVC1/src/main/webapp/img/";
 		try {
 			byte[] bytes = file.getBytes();
 			Path path = (Path) Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
@@ -89,9 +88,4 @@ public class SachDao {
 		Query<Sach> query = session.createQuery(sql);
 		return query.getResultList();
 	}
-<<<<<<< HEAD
-	
-	
-=======
->>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 }
