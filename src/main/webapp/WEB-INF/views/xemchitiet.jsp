@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -8,6 +7,32 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<style type="text/css">
+
+	table{
+	
+		margin-left: 50px;
+		margin-top:25px;
+		font-size: 18;
+	}
+	.range{
+
+		float:left;
+	}
+	
+	.range1{
+		
+		text-align: left;
+	}
+
+	h5{
+		font-weight: bold;
+		text-transform: uppercase;
+		margin-bottom: 29px;
+		margin-left: 60px;
+	}
+</style>
 <title>Xem chi tiết</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,43 +48,41 @@
 		</ol>
 		<!--List Products -->
 
-		<%-- <div class="card mb-3" style="width: 100%;">
-			<div class="row no-gutters" style="background-color: #E9ECEF;">
-				<div class="col-md-4">
-					<img src="img/${xemchitiet.hinhAnh }" class="card-img"
-						style="width: 300px; height: 300px; float: left;">
-				</div>
-				<div style="margin-top: 75px;">
-					<div>
-						<h4>${xemchitiet.tenSach}</h4>
-					</div>					
-					<div style="margin-right: 85px;color: #218838;">Giá:${xemchitiet.donGia} VNĐ</div>
-					<p class="card-text">${xemchitiet.ghiChu }</p>
-					<a href="muahang?idSach=${xemchitiet.idSach}"class="btn btn-warning" style="width: 300px;margin-top: 20px;margin-right: -105px;"><i class="fas fa-cart-arrow-down" ></i> Thêm vào giỏ</a>
-				</div>
-			</div>
-		</div> --%>
-		<div>THÔNG TIN CHI TIẾT SÁCH</div>
+		<div><h5 style="font-family: 'Roboto',sans-serif !important;margin-right: 100px;">THÔNG TIN CHI TIẾT SÁCH<h5></h5></div>
 		<div class="card mb-3" style="max-width: 800px;">
 			<div class="row no-gutters">
 				<div class="col-md-4">
 					<img src="img/${xemchitiet.hinhAnh }" class="card-img" alt="...">
 				</div>
+				
 				<div class="col-md-8">
-					<div class="card-body">
-						<h5 class="card-title" style="margin-left: 145px;">${xemchitiet.tenSach}</h5>
-
-						<p class="card-text">
-							<small class="text-muted">${xemchitiet.ghiChu }</small>
-						</p>
-						<p class="card-text" style="margin-right: 60px; color: #088c55;">Đơn
-							giá: ${xemchitiet.donGia} VNĐ</p>
-						<a href="muahang?idSach=${xemchitiet.idSach}"
+					
+					<table>
+						<tr>
+							<td colspan="2"><h5><b>${xemchitiet.tenSach}</b></h5></td>
+						</tr>
+						<tr>
+							<td class="range">Tác giả:</td>
+							<td class="range1">${tacGia.tenTacGia}</td>
+						</tr>
+						<tr>
+							<td class="range">Thể loại:</td>
+							<td class="range1">${theloai.theLoai}</td>
+						</tr>
+						<tr>
+							<td colspan="2"><small class="text-muted">${xemchitiet.ghiChu }</small></td>
+						</tr>
+						<tr>
+							<td class="range">Giá: </td>
+							<td class="range1"><u><b>${xemchitiet.donGia} VNĐ</b></u></td>
+						</tr>
+						<tr>
+							<td colspan="2"><a href="muahang?idSach=${xemchitiet.idSach}"
 							class="btn btn-warning"
 							style="width: 300px; margin-top: 20px;"><i
-							class="fas fa-cart-arrow-down"></i> Thêm vào giỏ</a>
-
-					</div>
+							class="fas fa-cart-arrow-down"></i> Thêm vào giỏ</a></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>

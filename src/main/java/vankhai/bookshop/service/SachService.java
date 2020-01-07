@@ -51,6 +51,9 @@ public class SachService {
 		return sachDao.getSachTL(idtheLoai);
 	}
 	
+	public List<Sach> timkiem(String tenSach){
+		return sachDao.timkiem(tenSach);
+	}
 	
 
 	

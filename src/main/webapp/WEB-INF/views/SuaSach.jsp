@@ -109,20 +109,6 @@
 										</c:forEach>	
 									</select>											
 								</div> 
-								
-								<!-- /// ok ok ok Sẵn lm giùm cái thể loại luôn ih :v
-								/// :( đói bụng :(). Vậy thôi phú đi ăn ih. để tui dựa theo làm
-								/// mà hiểu chưa. CHưa set if ă
-								set là gán biến trong var = cái trong value
-								eq là equals :v
-								ngâm cứu đi, ăn cơm đây
-								Ok. hi. thank cìu <3	 -->															
-								<%-- <div class="form-group">
-									<label>Tên thể loại</label>
-									 <select class="custom-select" name="idtheloai">
-											<option value="">${list.theLoai.id}</option>
-									</select>								
-								</div>  --%>
 
 								<div class="form-group">
 									<label for="inputFile">Hình ảnh</label>

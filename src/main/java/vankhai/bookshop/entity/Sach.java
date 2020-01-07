@@ -1,6 +1,7 @@
 package vankhai.bookshop.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -117,6 +118,7 @@ public class Sach implements Serializable {
 	public void setDonGia(float donGia) {
 		this.donGia = donGia;
 	}
-		
+	
+
 	
 }

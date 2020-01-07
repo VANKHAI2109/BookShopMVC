@@ -25,6 +25,7 @@
 			<!--List Products -->
 			<div class="card card-primary">
 				<c:if test="${cart == null}">
+					<div>${kq}</div>
 					<div class="card-header">
 						<h3 class="card-title">Chưa có sản phẩm nào trong giỏ hàng</h3>
 						<a href="muaHang.html">Tiếp tục mua hàng</a>
@@ -69,7 +70,7 @@
 											<td>${item.sach.tenSach}</td>
 											<td><img src="img/${item.sach.hinhAnh}" height="50"
 												width="50" /></td>
-											<td><input value="${item.quantity}" name="quantity"
+											<td><input value="${item.quantity}" pattern="[0-9]" name="quantity"
 												style="width: 50px; text-align: center;" /></td>
 											<td>${item.sach.donGia}VNĐ</td>
 											<td>${ item.quantity* item.sach.donGia}VNĐ</td>
@@ -85,7 +86,7 @@
 						<div style="margin-top: 20px;">
 							<b><a href="index.html" style="float: left;"> <u>Tiếp tục mua hàng</u></a></b> <a href="thanhtoan.html" class="btn btn-danger"
 								style="float: right;"><i class="fas fa-dollar-sign"></i>
-								Thanh toán</a> <b>Tổng tiền:</b> <input type="text"
+								Đặt mua</a> <b>Tổng tiền:</b> <input type="text"
 								value="${sum} VNĐ" readonly
 								style="width: 150px; text-align: center;">
 						</div>

@@ -88,4 +88,12 @@ public class SachDao {
 		return query.getResultList();
 	}
 	
+	public List<Sach> timkiem(String tenSach) {
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql = "from " + Sach.class.getName() + " s where s.tenSach like '%"+tenSach+"%'";
+		Query<Sach> query = session.createQuery(sql);
+		return query.getResultList();
+	}
+	
+	
 }
