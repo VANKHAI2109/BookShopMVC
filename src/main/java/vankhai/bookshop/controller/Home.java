@@ -2,6 +2,7 @@
 package vankhai.bookshop.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import vankhai.bookshop.entity.HDChiTiet;
+import vankhai.bookshop.entity.HoaDon;
 import vankhai.bookshop.entity.Item;
 import vankhai.bookshop.entity.Sach;
 import vankhai.bookshop.entity.TacGia;
 import vankhai.bookshop.entity.TheLoai;
 import vankhai.bookshop.entity.User;
+import vankhai.bookshop.service.HDCTService;
+import vankhai.bookshop.service.HoaDonService;
 import vankhai.bookshop.service.SachService;
 import vankhai.bookshop.service.TacGiaService;
 import vankhai.bookshop.service.TheLoaiService;
@@ -46,6 +51,11 @@ public class Home {
 	@Autowired
 	private TacGiaService tacGiaService;
 	
+	@Autowired 
+	private HoaDonService hoaDonService;
+	
+	@Autowired
+	private HDCTService hdChitietService;
 
 	@RequestMapping("login")
 	public String login(Model model,HttpServletRequest req) {
@@ -354,6 +364,36 @@ public class Home {
 			
 			return "thanhtoan";
 		}		
+	}
+	
+	@RequestMapping("xlthanhtoan")
+	public String XLThanhToan(HttpSession session,HttpServletRequest req,Model model) {
+		
+		List<Item> cart=(List<Item>) session.getAttribute("cart");
+		String tenKhachHang=req.getParameter("name");
+		String diaChi=req.getParameter("address");
+		String sdt=req.getParameter("sdt");
+		
+		HoaDon hoadon=new HoaDon();
+		hoadon.setNgayDatHang(new Date());
+		hoadon.setTenKhachHang(tenKhachHang);
+		hoadon.setDiaChi(diaChi);
+		hoadon.setName("HDM");
+		hoaDonService.LuuHoaDon(hoadon);
+		
+		for(int i = 0; i<cart.size(); i++) {
+			HDChiTiet hdChiTiet= new HDChiTiet();
+			
+			hdChiTiet.setIdDh(hoadon.getId());
+			hdChiTiet.setIdSach(cart.get(i).getSach().getIdSach());
+			hdChiTiet.setGia(cart.get(i).getSach().getDonGia());
+			hdChiTiet.setSoLuong(cart.get(i).getQuantity());
+			hdChiTiet.setThanhTien(cart.get(i).getQuantity()*cart.get(i).getSach().getDonGia());
+			hdChitietService.luuHDCT(hdChiTiet);
+		}
+		session.removeAttribute("cart");
+		model.addAttribute("kq", "Thanh toán thành công !");
+		return "giohang";
 	}
 	
 	@RequestMapping("timkiem")

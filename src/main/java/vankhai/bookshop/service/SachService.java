@@ -26,7 +26,7 @@ public class SachService {
 	public void themSach( Sach ds) {
 		sachDao.themSach(ds);
 	}
-	
+//	
 	public void suaSach(Sach sach) {
 		sachDao.suaSach(sach);
 	}

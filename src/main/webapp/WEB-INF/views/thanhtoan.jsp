@@ -36,11 +36,11 @@
 		<jsp:include page="Menu.jsp"></jsp:include>
 		<header class="jumbotron my-4" id="fix">
 			<h2 style="text-align: center;">Thông tin khách hàng</h2>
-			<form action="dongy" method="post" class="fix">
+			<form action="xlthanhtoan" method="post" class="fix">
 				<div class="form-group">
 					<label for="exampleInputEmail1" style="float: left;">Tên
-						khách hàng</label> <input type="text" class="form-control" maxlength="40"
-						pattern="^[a-zA-Z0-9_.-]*$" required aria-describedby="emailHelp"
+						khách hàng</label> <input type="text" class="form-control" maxlength="100"
+						 required 
 						placeholder="Họ và tên" name="name">
 				</div>
 				<div class="form-group">
@@ -48,11 +48,11 @@
 						chỉ</label> <input type="text" class="form-control" maxlength="200"
 						required placeholder="Địa chỉ" name="address">
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="exampleInputPassword1" style="float: left;">Số
 						điện thoại</label> <input type="text" class="form-control" maxlength="11"
 						required placeholder="SĐT" name="sdt">
-				</div>
+				</div> -->
 				<button type="submit" class="btn btn-success btn-lg btn-block"
 					style="width: 25%; margin-left: 35%">Đồng ý</button>
 			</form>

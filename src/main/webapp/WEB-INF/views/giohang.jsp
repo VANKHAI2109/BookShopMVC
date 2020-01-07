@@ -25,6 +25,7 @@
 			<!--List Products -->
 			<div class="card card-primary">
 				<c:if test="${cart == null}">
+					<div>${kq}</div>
 					<div class="card-header">
 						<h3 class="card-title">Chưa có sản phẩm nào trong giỏ hàng</h3>
 						<a href="muaHang.html">Tiếp tục mua hàng</a>
