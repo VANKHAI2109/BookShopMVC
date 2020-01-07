@@ -4,6 +4,7 @@ package vankhai.bookshop.controller;
 import java.util.Date;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -114,16 +115,16 @@ public class Home {
 		String pass2 = req.getParameter("password2");
 		if(userService.checktrunguser(username)==true) {
 			sesion.setAttribute("erro", "Trùng user");
-			//req.setAttribute("NOTE", "Trùng user");
+			//req.setAttribute("NOTE", "TrÃ¹ng user");
 		}
 		else if (pass.equals(pass2) == false) {
 			sesion.setAttribute("erro", "Mật khẩu không trùng khớp");
-			//req.setAttribute("NOTE", "Mật khẩu không trùng khớp");
+			//req.setAttribute("NOTE", "Máº­t kháº©u khÃ´ng trÃ¹ng khá»›p");
 		}
 		else {		
 			userService.saverUser(user);
-			sesion.setAttribute("erro", "Đăng ký thành công");
-			//req.setAttribute("NOTE", "Đăng ký thành công");
+			sesion.setAttribute("erro", "Đăng ký thành công!");
+			//req.setAttribute("NOTE", "Ä�Äƒng kÃ½ thÃ nh cÃ´ng");
 		}
 
 		return "register";
@@ -144,7 +145,7 @@ public class Home {
 				return "redirect:index";
 			} else {
 				session.setAttribute("erro", "Vui lòng kiểm tra lại thông tin");
-				//req.setAttribute("Note", "Vui lòng kiểm tra lại thông tin");
+				//req.setAttribute("Note", "Vui lÃ²ng kiá»ƒm tra láº¡i thÃ´ng tin");
 			}
 		}
 		return "login";
@@ -159,9 +160,13 @@ public class Home {
 		List<Sach> listSach = sachService.getAll();
 		model.addAttribute("list", listSach);
 		
-		//Này nè
+		//NÃ y nÃ¨
 		List<Sach> listSachTL = sachService.getSachTL(idTL);
+<<<<<<< HEAD
 		model.addAttribute("listTL", listSachTL); 
+=======
+		model.addAttribute("listTL", listSachTL); //vÃ£i chÆ°á»Ÿng kháº£i
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		
 		List<User> listUser=userService.getAll();
 		model.addAttribute("listuser", listUser);
@@ -232,7 +237,7 @@ public class Home {
 		TheLoai theLoaiCuaSach;
 		List<TacGia> allTacGia;
 		List<TheLoai> allTheLoai;
-		//này để hiển thị trong value option, còn hiển thị ở ngoài là cả bảng tacgia
+		//nÃ y Ä‘á»ƒ hiá»ƒn thá»‹ trong value option, cÃ²n hiá»ƒn thá»‹ á»Ÿ ngoÃ i lÃ  cáº£ báº£ng tacgia
 		tacGiaCuaSach = tacGiaService.selectTacGia(sach.getTacGia().getId());
 		theLoaiCuaSach = theLoaiService.selectTheLoai(sach.getTheLoai().getId());
 		
@@ -246,8 +251,38 @@ public class Home {
 		
 		return "SuaSach";
 	}
+<<<<<<< HEAD
 		
 	//Xóa sách trong giỏ
+=======
+	
+	@RequestMapping("giohang")
+	public String giohang() {
+		return "giohang";
+	}
+	
+	/*
+	 * @RequestMapping("test") public String test(Model model,@RequestParam(value =
+	 * "idTL", defaultValue = "0") int idTL) { List<Sach> listSachTL =
+	 * sachService.getSachTL(idTL); model.addAttribute("list", listSachTL);
+	 * 
+	 * return "test"; }
+	 */
+	//XÃ³a giá»� hÃ ng
+	@RequestMapping("deleteShopCart")
+	public String deleteGioHang(Model model, HttpSession session) {
+		session.removeAttribute("cart");
+		return "giohang";
+	}
+	
+	//XÃ³a giá»� hÃ ng
+	@RequestMapping("muaHang")
+	public String TiepTucMuaHang(Model model, HttpSession session) {
+		return "redirect:index";
+	}
+	
+	//XÃ³a sÃ¡ch trong giá»�
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 	@RequestMapping("xoa")
 	public String XoaSach(Model model, HttpSession session,
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
@@ -264,7 +299,7 @@ public class Home {
 		  session.setAttribute("cart", cart);
 		return "giohang";
 	}
-	//Update giỏ hàng
+	//Update giá»� hÃ ng
 	@RequestMapping("updateShopcart")
 	public String updateQuantiy(Model model,HttpServletRequest req, HttpSession session) {
 		List<Item> cart=(List<Item>) session.getAttribute("cart");
@@ -281,7 +316,7 @@ public class Home {
 	public String cart(Model model, HttpSession session,
 			@RequestParam(value = "idSach", defaultValue = "0") int idSach) {
 		
-		  //Nếu chưa có tạo mói
+		  //Náº¿u chÆ°a cÃ³ táº¡o mÃ³i
 		  if(session.getAttribute("cart")==null) 
 		  { 
 			  List<Item> cart=new ArrayList<Item>(); 
@@ -323,7 +358,11 @@ public class Home {
 		TheLoai theLoaiCuaSach;
 		List<TacGia> allTacGia;
 		List<TheLoai> allTheLoai;
+<<<<<<< HEAD
 		
+=======
+		//này để hiển thị trong value option, còn hiển thị ở ngoài là cả bảng tacgia
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		tacGiaCuaSach = tacGiaService.selectTacGia(sach.getTacGia().getId());
 		theLoaiCuaSach = theLoaiService.selectTheLoai(sach.getTheLoai().getId());
 	
@@ -349,22 +388,34 @@ public class Home {
 		}		
 	}
 	
+<<<<<<< HEAD
 	//Xử lý thanh toán
+=======
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 	@RequestMapping("xlthanhtoan")
 	public String XLThanhToan(HttpSession session,HttpServletRequest req,Model model) {
 		
 		List<Item> cart=(List<Item>) session.getAttribute("cart");
 		String tenKhachHang=req.getParameter("name");
 		String diaChi=req.getParameter("address");
+<<<<<<< HEAD
 		int sdt=Integer.parseInt(req.getParameter("sdt"));
 		String name=(String) session.getAttribute("user");
+=======
+		String sdt=req.getParameter("sdt");
+		
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		HoaDon hoadon=new HoaDon();
 		hoadon.setNgayDatHang(new Date());
 		hoadon.setTenKhachHang(tenKhachHang);
 		hoadon.setDiaChi(diaChi);
+<<<<<<< HEAD
 		hoadon.setSdt(sdt);
 		hoadon.setName(name);
 		
+=======
+		hoadon.setName("HDM");
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		hoaDonService.LuuHoaDon(hoadon);
 		
 		for(int i = 0; i<cart.size(); i++) {
@@ -378,11 +429,18 @@ public class Home {
 			hdChitietService.luuHDCT(hdChiTiet);
 		}
 		session.removeAttribute("cart");
+<<<<<<< HEAD
 		model.addAttribute("kq", "Đặt hàng thành công! Vui lòng đợi thông tin từ Shop ^^");
 		return "giohang";
 	}
 	
 	//Xử lý tìm kiếm
+=======
+		model.addAttribute("kq", "Thanh toán thành công !");
+		return "giohang";
+	}
+	
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 	@RequestMapping("timkiem")
 	public String timkiem(Model model, HttpServletRequest req) {
 		String tenSach=req.getParameter("key");
@@ -390,13 +448,20 @@ public class Home {
 		if(kq.size()>=1) {
 			model.addAttribute("kq", kq);
 		}
+<<<<<<< HEAD
 		else{
 			model.addAttribute("Null", "Không tìm thấy sản phẩm nào phù hợp?");
 			return "KetQuaTimKiem";	
+=======
+		else {
+			model.addAttribute("Note", " Không có sản phẩm nào phù hợp!");
+			return "KetQuaTimKiem";
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 		}
 		
 		return "KetQuaTimKiem";	
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping("diachi")
 	public String diaChi() {
@@ -433,6 +498,8 @@ public class Home {
 	public String thongTinUser() {
 		return "thongtinuser";
 	}
+=======
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 
 	@RequestMapping("giohang")
 	public String giohang() {

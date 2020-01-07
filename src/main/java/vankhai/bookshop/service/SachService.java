@@ -26,7 +26,7 @@ public class SachService {
 	public void themSach( Sach ds) {
 		sachDao.themSach(ds);
 	}
-	
+//	
 	public void suaSach(Sach sach) {
 		sachDao.suaSach(sach);
 	}
@@ -34,9 +34,10 @@ public class SachService {
 		return sachDao.xoaSach(idSach);
 	}
 
-	/*
-	 * public boolean suaSach( Sach sach) { return sachDao.suaSach(sach); }
-	 */
+	public List<Sach> timkiem(String tenSach){
+		return sachDao.timkiem(tenSach);
+	}
+	
 	public List<Sach> getAll(){
 		return sachDao.getAll();
 	}

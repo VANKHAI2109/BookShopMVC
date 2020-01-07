@@ -31,8 +31,13 @@
     </ol>
 <h1 class="my-4" style="text-align: center;">Sản phẩm</h1>
 		<!-- Page Features -->
+<<<<<<< HEAD
 		<h5>${Null}</h5>
 		<div class="row text-center">				
+=======
+		<div>${Note}</div>
+		<div class="row text-center">
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 				<c:forEach items="${kq}" var="kq">
 					<div class="col-lg-3 col-md-6 mb-4">
 						<div class="card h-100">
@@ -48,6 +53,10 @@
 						</div>
 					</div>
 				</c:forEach>
+<<<<<<< HEAD
+=======
+
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 			
 		<!-- /.row -->
 	</div>

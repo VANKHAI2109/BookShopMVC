@@ -26,7 +26,7 @@ public class SachDao {
 	SessionFactory sessionFactory;
 
 	public String processFile(MultipartFile file) {
-		String UPLOADED_FOLDER = "D:/JavaWeb/CuoiKy/BookShopMVC/src/main/webapp/img/";
+		String UPLOADED_FOLDER = "C:/Users/Boss/Desktop/BookShopMVC/src/main/webapp/img/";
 		try {
 			byte[] bytes = file.getBytes();
 			Path path = (Path) Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
@@ -68,19 +68,14 @@ public class SachDao {
 		
 	}
 	
-	/*
-	 * public List<Sach> getSachThamKhao(int id) { Session session =
-	 * this.sessionFactory.getCurrentSession(); String sql = "from " +
-	 * Sach.class.getName() + " where " + id + "=?"; Query<Sach> query =
-	 * session.createQuery(sql); return query.getResultList(); }
-	 */
+	
 	public List<Sach> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
 		String sql = "from " + Sach.class.getName();
 		Query<Sach> query = session.createQuery(sql);
 		return query.getResultList();
 	}
-// này
+
 	public List<Sach> getSachTL(int idtheLoai) {
 		Session session = this.sessionFactory.getCurrentSession();
 		String sql = "from " + Sach.class.getName() + " s where s.theLoai.id = " +idtheLoai ;
@@ -94,6 +89,9 @@ public class SachDao {
 		Query<Sach> query = session.createQuery(sql);
 		return query.getResultList();
 	}
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> bf51659f05b5fdf1a34fa58a4db86b13fac09abc
 }
